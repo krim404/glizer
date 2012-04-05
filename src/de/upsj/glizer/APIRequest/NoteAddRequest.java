@@ -41,6 +41,7 @@ public class NoteAddRequest extends APIRequest {
 	String durationText;
 	boolean alreadyBanned;
 	boolean kick;
+	boolean temp;
 	int attempt;
 	int status;
 	JSONObject resultJSON;
@@ -56,6 +57,7 @@ public class NoteAddRequest extends APIRequest {
 		this.duration = duration;
 		this.alreadyBanned = false;
 		this.kick = false;
+		this.temp = false;
 	}
 	
 	public NoteAddRequest(CommandSender sender, String recipient, String reason, int type, int ReputationChange, int duration, String durationText)
@@ -72,6 +74,7 @@ public class NoteAddRequest extends APIRequest {
 		this.durationText = durationText;
 		this.alreadyBanned = false;
 		this.kick = false;
+		this.temp = false;
 		attempt = 0;
 	}
 
@@ -85,7 +88,7 @@ public class NoteAddRequest extends APIRequest {
 				status = NotAllowed;
 				return;
 			}
-			result = addNote(sender, recipient, "0", "1", "0", reason, "-100", "0", "0", false, false);
+			result = addNote(sender, recipient, "0", "1", "0", reason, "-200", "0", "0", false, false);
 		}
 		else if (type == LocalBan)
 		{
@@ -105,7 +108,7 @@ public class NoteAddRequest extends APIRequest {
 				status = NotAllowed;
 				return;
 			}
-			result = addNote(sender, recipient, "0", "0", "0", reason, "-100", String.valueOf(duration), "0", false, false);
+			result = addNote(sender, recipient, "0", "0", "0", reason, "-200", String.valueOf(duration), "0", false, false);
 		}
 		else if (type == ForceBan)
 		{
@@ -148,6 +151,11 @@ public class NoteAddRequest extends APIRequest {
 			String rep = getRep(sender, recipient);
 			if (rep.equalsIgnoreCase("not")) {
 				alreadyBanned = true;
+				status = NotAllowed;
+				return;
+			}
+			if (rep.equalsIgnoreCase("temp")) {
+				temp = true;
 				status = NotAllowed;
 				return;
 			}
@@ -367,6 +375,12 @@ public class NoteAddRequest extends APIRequest {
 				bChat.sendMessage(sender, "&6This Player isn't banned from this server.");
 				return;
 			}
+			if (temp)
+			{
+				// TODO Language
+				bChat.sendMessage(sender, "&6This Player is only temporarily banned from this server.");
+				return;
+			}
 			bBackupManager.removeBanBackup(recipient);
 			if (bConfigManager.broadcastBan)
 				bChat.broadcastMessage(Language.GetTranslated("ban.unban_1", (sender instanceof Player ? ((Player) sender).getName() : "Console"), recipient));
@@ -453,6 +467,14 @@ public class NoteAddRequest extends APIRequest {
 				}
 				if (res == -100) {
 					return "local";
+				}
+				if (res - result.getInt("templocal") > -100)
+				{
+					return "temp";
+				}
+				if (res - result.getInt("shared") > -100)
+				{
+					return "shared";
 				}
 				return "global";
 			}
