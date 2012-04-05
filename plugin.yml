@@ -1,0 +1,279 @@
+name: glizer
+main: com.beecub.glizer.glizer
+version: 2.2.0.0
+author: upsj
+website: 'http://glizer.de/'
+description: >
+             Minecraft Globalizer
+commands:
+  kick:
+    description: Kick a Player from the Server
+    usage: |
+           /<command> [playername] [message]
+  skick:
+    description: Kick a Player without a broadcast (the config file is ignored)
+    usage: |
+           /<command> [playername] [message]
+  ban:
+    description: Ban player
+    usage: |
+           /<command> [playername] [message]
+  globalban:
+    description: Global ban
+    aliases: [gban]
+    usage: |
+           /<command> [playername] [message]
+  localban:
+    description: Local ban
+    aliases: [lban]
+    usage: |
+           /<command> [playername] [message]
+  forceban:
+    description: Force a localban Ban
+    usage: |
+           /<command> [playername] [message]
+  tempban:
+    description: Temporary Ban
+    usage: |
+           /<command> [playername] [time] [minutes|hours|days] [message]
+  unban:
+    description: Unban player
+    usage: |
+           /<command> [playername] [message]
+  warn:
+    description: Caution a player
+    usage: |
+           /<command> [playername] [value] [comment]
+  gwarn:
+    description: Globally caution a player
+    usage: |
+           /<command> [playername] [value] [comment]
+  tempwarn:
+    description: Temp-Caution a player
+    usage: |
+           /<command> [playername] [value] [comment]
+  warnings:
+    description: Show cautions to a player
+    usage: |
+           /<command> [playername]
+  localwarnings:
+    description: Show local cautions to a player
+    aliases: [lwarnings]
+    usage: |
+           /<command> [playername]
+  praise:
+    description: Show cautions to a player
+    usage: |
+           /<command> [playername]
+  gpraise:
+    description: Show global cautions to a player
+    usage: |
+           /<command> [playername]
+  comment:
+    description: Add comment to player
+    usage: |
+           /<command> [playername] [comment]
+  comments:
+    description: Show comments to player
+    usage: |
+           /<command> [playername]
+  rateplayer:
+    description: Rate player
+    usage: |
+           /<command> [playername] [value]
+  rateserver:
+    description: Rate server
+    usage: |
+           /<command> [value]
+  profile:
+    description: Show players profile
+    usage: |
+           /<command> [playername]
+  editprofile:
+    description: Edit profile field
+    usage: |
+           /<command> [fieldplayername] [text|value]
+  clearprofile:
+    description: Clear whole profile
+    usage: |
+           /<command>
+  onlinetime:
+    description: Check your onlinetime
+    usage: |
+           /<command>
+  friends:
+    description: Show all friends
+    usage: |
+           /<command>
+  friendsonline:
+    description: Show all online friends and on which server theyre online
+    usage: |
+           /<command>
+  addfriend:
+    description: Add a player to your friend list
+    usage: |
+           /<command> [playername]
+  removefriend:
+    description: Remove a friend from your friend list
+    usage: |
+           /<command> [playername]
+  glizerhelp:
+    description: Help to glizer plugin
+    usage: |
+           /<command> [page]
+  glizer:
+    description: Show the glizer version
+    usage: |
+           /<command> [page]
+  abuse:
+    description: Report abuse
+    usage: |
+           /<command>
+  glizerreload:
+    description: Reload glizer configuration file
+    usage: |
+           /<command> [reload]
+  addwhitelist:
+    description: Add player to the whitelist
+    usage: |
+           /<command> [playername]
+  removewhitelist:
+    description: Remove player from the whitelist
+    usage: |
+           /<command> [playername]
+  eventlist:
+    description: Lists all open Events
+    usage: |
+           /<command>
+  registerevent:
+    description: Registers your participation at an event
+    usage: |
+           /<command> [eventid]
+  unregisterevent:
+    description: Unregister your participation
+    usage: |
+           /<command> [eventid]
+  eventdetail:
+    description: Shows you the details of an event
+    usage: |
+           /<command> [eventid]
+  myevents:
+    description: Shows you events you're signed up to
+    usage: |
+           /<command>
+  theanswertolifetheuniverseandeverything:
+    description: The Answer to Life the Universum and Everything.
+    usage: |
+           /<command>
+  listaccounts:
+    description: Lists all possible accounts of this player
+    usage: |
+           /<command> [playername]
+permissions:
+  glizer.admin:
+    children:
+      glizer.ban.unban: true
+      glizer.reload: true
+      glizer.moderator: true
+    default: op
+  glizer.moderator:
+    children:
+      glizer.kick: true
+      glizer.ban.ban: true
+      glizer.ban.globalban: true
+      glizer.ban.localban: true
+      glizer.ban.tempban: true
+      glizer.praise: true
+      glizer.gpraise: true
+      glizer.note.note: true
+      glizer.note.notes: true
+      glizer.warning.warn: true
+      glizer.warning.gwarn: true
+      glizer.warning.tempwarn: true
+      glizer.whitelist.add: true
+      glizer.whitelist.remove: true
+      glizer.warning.warnings: true
+      glizer.reputation.message: true
+      glizer.user: true
+  glizer.user:
+    children:
+      glizer.comment.comment: true
+      glizer.comment.comments: true
+      glizer.other.onlinetime: true
+      glizer.rate.rateplayer: true
+      glizer.rate.rateserver: true
+      glizer.profile.profile: true
+      glizer.profile.editprofile: true
+      glizer.profile.clearprofile: true
+      glizer.friends.friends: true
+      glizer.friends.addfriend: true
+      glizer.friends.removefriend: true
+      glizer.accounts.list: true
+      glizer.event.register: true
+      glizer.event: true
+      glizer.help: true
+      glizer.register: true
+  glizer.comment.comment:
+    description: comment
+  glizer.comment.comments:
+    description: comments
+  glizer.other.onlinetime:
+    description: onlinetime
+  glizer.rate.rateplayer:
+    description: rateplayer
+  glizer.rate.rateserver:
+    description: rateserver
+  glizer.profile.profile:
+    description: profile
+  glizer.profile.editprofile:
+    description: editprofile
+  glizer.profile.clearprofile:
+    description: clearprofile
+  glizer.friends.friends:
+    description: friends
+  glizer.friends.addfriend:
+    description: addfriend
+  glizer.friends.removefriend:
+    description: removefriend
+  glizer.accounts.list:
+    description: list
+  glizer.event.register:
+    description: eventregister
+  glizer.event:
+    description: event
+  glizer.help:
+    description: help
+  glizer.register:
+    description: register
+  glizer.kick:
+    description: kick
+  glizer.ban.ban:
+    description: ban
+  glizer.ban.globalban:
+    description: globalban
+  glizer.ban.localban:
+    description: localban
+  glizer.ban.tempban:
+    description: tempban
+  glizer.praise:
+    description: praise
+  glizer.gpraise:
+    description: gpraise
+  glizer.note.note:
+    description: note
+  glizer.note.notes:
+    description: notes
+  glizer.warning.warn:
+    description: warn
+  glizer.warning.gwarn:
+    description: gwarn
+  glizer.warning.tempwarn:
+    description: tempwarn
+  glizer.whitelist.add:
+    description: addwhitelist
+  glizer.whitelist.remove:
+    description: removewhitelist
+  glizer.warning.warnings:
+    description: warnings
+  glizer.reputation.message:
+    description: reputationmessage
