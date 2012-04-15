@@ -69,6 +69,13 @@ public class glizerPlayerListener implements Listener {
 	
 	@EventHandler
 	public void onPlayerQuit(PlayerQuitEvent event) {
-		glizer.queue.add(new LogoutRequest(event.getPlayer()));
+		if (bBackupManager.checkBanList(event.getPlayer().getName()))
+		{
+			event.setQuitMessage(null);
+		}
+		else
+		{
+			glizer.queue.add(new LogoutRequest(event.getPlayer()));
+		}
 	}
 }
