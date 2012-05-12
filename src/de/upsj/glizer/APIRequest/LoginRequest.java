@@ -22,6 +22,7 @@ public class LoginRequest extends APIRequest {
 	String ip;
 	boolean kick = false;
 	boolean whitelist = false;
+	boolean ipfail = false;
 
 	public LoginRequest(Player player, String IP) {
 		target = player;
@@ -44,6 +45,19 @@ public class LoginRequest extends APIRequest {
 			{
 				kick = true;
 			}
+			
+			if(result.optBoolean("iplock",false))
+			{
+				String tip = result.optString("locip","");
+				if(!tip.equals(""))
+				{
+					if(!ip.startsWith(tip))
+					{
+						ipfail = true;
+					}
+				}
+			}
+			
 			if (result.optInt("whitelisted", 0) == 1)
 			{
 				whitelist = true;
@@ -81,6 +95,14 @@ public class LoginRequest extends APIRequest {
 			}
 			bBackupManager.addBanBackup(target.getName());
 			return;
+		}
+		else if(ipfail)
+		{
+			if (target.isOnline())
+			{
+				target.kickPlayer(bConfigManager.ipcheck_joinmessage);
+				bChat.log.log(Level.INFO, "Player " + target.getName() + " failed the IP-Check");
+			}
 		}
 		else
 		{
