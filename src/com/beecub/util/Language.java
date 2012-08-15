@@ -65,7 +65,7 @@ public class Language {
 					}
 					line = pReader.readLine();
 				}
-
+				pReader.close();
 			} catch (IOException e) {
 				bChat.log("Reading from file '" + pFile.getName()
 						+ "' failed. " + e.getCause());
@@ -149,6 +149,7 @@ public class Language {
 				}
 
 				pWriter.flush();
+				pWriter.close();
 
 			} catch (IOException e) {
 				bChat.log("Exception while writing to " + pFile.getName()

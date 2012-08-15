@@ -60,6 +60,7 @@ public class BanQueue {
 			{
 				content += line + "\n";
 			}
+			br.close();
 			JSONArray bans = new JSONArray(content);
 			JSONObject ban;
 			for (int i = 0; i < bans.length(); i++)
