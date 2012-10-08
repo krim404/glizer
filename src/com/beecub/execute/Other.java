@@ -103,7 +103,7 @@ public class Other {
 			bChat.sendMessage(sender, "&6/unban&e [playername] [reason]");
 			return true;
 		}
-		if (topic.equalsIgnoreCase("Onlietime")) {
+		if (topic.equalsIgnoreCase("Onlinetime")) {
 			bChat.sendMessage(sender, "&6/onlinetime&e [playername]");
 			return true;
 		}
