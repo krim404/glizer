@@ -230,7 +230,7 @@ public class Ban {
 					message = "Kicked by Server";
 				}
 
-				bChat.log("§4"+(silent?"§4KICK§4":"§5SKICK§4") + "%"+sender.getName()+";"+recipient+";"+pPlayer.getName()+";"+message);
+				bChat.log(""+(silent?"KICK":"SKICK") + "%"+sender.getName()+";"+recipient+";"+pPlayer.getName()+";"+message);
 				if (bConfigManager.broadcastKick && !silent)
 
 					bChat.broadcastMessage(Language.GetTranslated(
