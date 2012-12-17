@@ -250,7 +250,7 @@ public class glizer extends JavaPlugin {
 		
 		if(bConfigManager.bungiecord == true)
 		{
-			if(this.getServer().getIp().equals("127.0.0.1"))
+			if(this.getServer().getIp().contains("127.0.0.1"))
 			{
 				onlinemode = true;
 				return true;
