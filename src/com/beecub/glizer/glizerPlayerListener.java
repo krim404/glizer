@@ -65,6 +65,8 @@ public class glizerPlayerListener implements Listener {
 		// TODO Language
 		bChat.sendMessageToPlayer(event.getPlayer(), "&6This server is running &2glizer - the Minecraft Globalizer&6");
 		bChat.sendMessageToPlayer(event.getPlayer(), "&6[GLIZER]: &eYour statistics are globally saved and public visible");
+		bChat.sendMessageToPlayer(event.getPlayer(), "&6[GLIZER]: &eFor more informations see www.glizer.de");
+
 	}
 	
 	@EventHandler
