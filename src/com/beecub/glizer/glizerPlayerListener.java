@@ -70,7 +70,7 @@ public class glizerPlayerListener implements Listener {
 		
 		if(bConfigManager.bungiecord == true)
 		{
-			if(!ip.equals("127.0.0.1"))
+			if(!ip.equals("127.0.0.1") || event.getPlayer().getName().equalsIgnoreCase("player"))
 			{
 				event.disallow(Result.KICK_BANNED, bConfigManager.ipcheck_joinmessage);
 				bChat.log(com.beecub.glizer.glizer.messagePluginName + " Bungee Cord error.", 2);
