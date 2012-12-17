@@ -6,9 +6,9 @@ import java.util.Map;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
-import org.bukkit.event.player.PlayerPreLoginEvent;
 import org.bukkit.event.player.PlayerLoginEvent.Result;
 import org.bukkit.event.player.PlayerQuitEvent;
 
@@ -23,9 +23,14 @@ import de.upsj.glizer.APIRequest.LogoutRequest;
 
 public class glizerPlayerListener implements Listener {
 	Map<String, String> playerIPs = new HashMap<String, String>();
-	
+	glizer glz;
+	public glizerPlayerListener(glizer glizer) 
+	{
+		this.glz = glizer;
+	}
+
 	@EventHandler
-	public void onPlayerPreLogin(PlayerPreLoginEvent event)
+	public void onPlayerPreLogin(AsyncPlayerPreLoginEvent event)
 	{
 		playerIPs.put(event.getName().toLowerCase(), bConnector.getIPAddress(event.getAddress()));
 	}
@@ -57,7 +62,22 @@ public class glizerPlayerListener implements Listener {
 					bChat.log("Player " + player.getName() + " is banned from this server. Kick", 2);
 			}
 		}
-		glizer.queue.add(new LoginRequest(event.getPlayer(), playerIPs.remove(event.getPlayer().getName().toLowerCase())));
+		
+		String ip = null;
+		ip = playerIPs.remove(event.getPlayer().getName().toLowerCase());
+		if(ip == null)
+			ip = bConnector.getIPAddress(event.getAddress());
+		
+		if(bConfigManager.bungiecord == true)
+		{
+			if(!ip.equals("127.0.0.1"))
+			{
+				event.disallow(Result.KICK_BANNED, bConfigManager.ipcheck_joinmessage);
+				bChat.log(com.beecub.glizer.glizer.messagePluginName + " Bungee Cord error.", 2);
+				glz.getServer().getPluginManager().disablePlugin(glz);
+			}
+		}
+		glizer.queue.add(new LoginRequest(event.getPlayer(), ip));
 	}
 
 	@EventHandler

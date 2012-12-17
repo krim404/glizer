@@ -66,7 +66,7 @@ public class glizer extends JavaPlugin {
 
 		pdfFile = this.getDescription();
 		PluginManager pm = getServer().getPluginManager();
-		pm.registerEvents(new glizerPlayerListener(), this);
+		pm.registerEvents(new glizerPlayerListener(this), this);
 
 		bConfigManager bConfigManager = new bConfigManager(this);
 		bBackupManager bBackupManager = new bBackupManager(this);
@@ -247,6 +247,19 @@ public class glizer extends JavaPlugin {
 	}
 
 	private boolean checkOnlineMode() {
+		
+		if(bConfigManager.bungiecord == true)
+		{
+			onlinemode = true;
+			return true;
+		}
+		
+		if(this.getServer().getOnlineMode())
+		{
+			onlinemode = true;
+			return true;
+		}
+		
 		Properties prop = new Properties();
 		String f = "server.properties";
 		try{
