@@ -68,7 +68,7 @@ public class glizerPlayerListener implements Listener {
 		if(ip == null)
 			ip = bConnector.getIPAddress(event.getAddress());
 		
-		if(bConfigManager.bungiecord == true)
+		if(bConfigManager.noip == true)
 		{
 			if(!ip.equals("127.0.0.1") || event.getPlayer().getName().equalsIgnoreCase("player"))
 			{

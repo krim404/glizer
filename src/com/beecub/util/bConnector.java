@@ -110,6 +110,9 @@ public class bConnector {
 	
 	public static String getIPAddress(InetAddress addr)
 	{
+		if(bConfigManager.noip == true)
+			return "127.0.0.1";
+		
 		byte[] ipAddr = addr.getAddress();
 		String ipAddrStr = "";
 		for (int i=0; i<ipAddr.length; i++) {

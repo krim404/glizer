@@ -28,7 +28,7 @@ public class bConfigManager {
     public static boolean usecomments;
     public static boolean useratings;
     public static boolean useevents;
-    public static boolean bungiecord;
+    public static boolean noip;
     
     // broadcasting
     public static boolean broadcastWarning;
@@ -99,7 +99,7 @@ public class bConfigManager {
         if(!conf.contains("features.useratings")) conf.set("features.useratings", true);
         if(!conf.contains("features.useevents")) conf.set("features.useevents", false);
     	
-        bungiecord = conf.getBoolean("features.bungiecord", false);  
+        noip = conf.getBoolean("features.noip", false);  
     	usewhitelist = conf.getBoolean("features.usewhitelist", false);    	
     	useglobalbans = conf.getBoolean("features.useglobalbans", false);        
         usebansystem = conf.getBoolean("features.usebansystem", false);        
@@ -183,7 +183,7 @@ public class bConfigManager {
             conf.set("features.usecomments", true);
             conf.set("features.useratings", true);
             conf.set("features.useevents", false);
-            conf.set("features.bungiecord",false);
+            conf.set("features.noip",false);
             
             // announces
             conf.set("announcing.broadcastWarning", false);

@@ -46,7 +46,7 @@ public class LoginRequest extends APIRequest {
 				kick = true;
 			}
 			
-			if(result.optBoolean("iplock",false) && bConfigManager.bungiecord == false)
+			if(result.optBoolean("iplock",false) && bConfigManager.noip == false)
 			{
 				String tip = result.optString("locip","");
 				if(!tip.equals(""))
