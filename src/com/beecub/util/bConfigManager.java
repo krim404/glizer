@@ -29,6 +29,7 @@ public class bConfigManager {
     public static boolean useratings;
     public static boolean useevents;
     public static boolean noip;
+    public static boolean bungeeCord;
     
     // broadcasting
     public static boolean broadcastWarning;
@@ -100,6 +101,7 @@ public class bConfigManager {
         if(!conf.contains("features.useevents")) conf.set("features.useevents", false);
     	
         noip = conf.getBoolean("features.noip", false);  
+        bungeeCord = conf.getBoolean("features.bungeeCord", false);  
     	usewhitelist = conf.getBoolean("features.usewhitelist", false);    	
     	useglobalbans = conf.getBoolean("features.useglobalbans", false);        
         usebansystem = conf.getBoolean("features.usebansystem", false);        
@@ -184,6 +186,7 @@ public class bConfigManager {
             conf.set("features.useratings", true);
             conf.set("features.useevents", false);
             conf.set("features.noip",false);
+            conf.set("features.bungeeCord",false);
             
             // announces
             conf.set("announcing.broadcastWarning", false);

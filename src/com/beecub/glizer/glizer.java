@@ -248,7 +248,7 @@ public class glizer extends JavaPlugin {
 
 	private boolean checkOnlineMode() {
 		
-		if(bConfigManager.noip == true)
+		if(bConfigManager.bungeeCord == true)
 		{
 			if(this.getServer().getIp().contains("127.0.0.1"))
 			{
