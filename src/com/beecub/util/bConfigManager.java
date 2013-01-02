@@ -91,7 +91,6 @@ public class bConfigManager {
     	language = conf.getString("language", "en");
     	
     	// features
-    	if(!conf.contains("features.bungiecord")) conf.set("features.bungiecord", false);
         if(!conf.contains("features.usewhitelist")) conf.set("features.usewhitelist", false);
         if(!conf.contains("features.useglobalbans")) conf.set("features.useglobalbans", true);
     	if(!conf.contains("features.usebansystem")) conf.set("features.usebansystem", true);
