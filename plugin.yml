@@ -28,11 +28,25 @@ commands:
     aliases: [lban]
     usage: |
            /<command> [playername] [message]
+  gban:
+    description: Global ban
+    aliases: [gban]
+    usage: |
+           /<command> [playername] [message]
+  lban:
+    description: Local ban
+    aliases: [lban]
+    usage: |
+           /<command> [playername] [message]
   forceban:
     description: Force a localban Ban
     usage: |
            /<command> [playername] [message]
   tempban:
+    description: Temporary Ban
+    usage: |
+           /<command> [playername] [time] [minutes|hours|days] [message]
+  timeban:
     description: Temporary Ban
     usage: |
            /<command> [playername] [time] [minutes|hours|days] [message]
@@ -48,7 +62,15 @@ commands:
     description: Globally caution a player
     usage: |
            /<command> [playername] [value] [comment]
+  globalwarn:
+    description: Globally caution a player
+    usage: |
+           /<command> [playername] [value] [comment]
   tempwarn:
+    description: Temp-Caution a player
+    usage: |
+           /<command> [playername] [value] [comment]
+  timewarn:
     description: Temp-Caution a player
     usage: |
            /<command> [playername] [value] [comment]
@@ -66,6 +88,10 @@ commands:
     usage: |
            /<command> [playername]
   gpraise:
+    description: Show global cautions to a player
+    usage: |
+           /<command> [playername]
+  globalpraise:
     description: Show global cautions to a player
     usage: |
            /<command> [playername]

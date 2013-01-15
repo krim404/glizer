@@ -41,13 +41,13 @@ public class bCommandRouter {
 		} else if (command.equals("skick")) {
 			Ban.kick(command, sender, args, true);
 			return true;
-		} else if (command.equals("globalban")) {
+		} else if (command.equals("globalban") || command.equals("gban")) {
 			if (bConfigManager.usebansystem && bConfigManager.useglobalbans) {
 				Ban.globalban(command, sender, args);
 				return true;
 			}
 			return false;
-		} else if (command.equals("localban")) {
+		} else if (command.equals("localban") || command.equals("lban")) {
 			if (bConfigManager.usebansystem) {
 				Ban.localBan(command, sender, args);
 				return true;
@@ -59,7 +59,7 @@ public class bCommandRouter {
 				return true;
 			}
 			return false;
-		} else if (command.equals("tempban")) {
+		} else if (command.equals("tempban") || command.equals("timeban")) {
 			if (bConfigManager.usebansystem) {
 				Ban.tempban(command, sender, args);
 				return true;
@@ -71,19 +71,19 @@ public class bCommandRouter {
 				return true;
 			}
 			return false;
-		} else if (command.equals("tempwarn")) {
+		} else if (command.equals("tempwarn") || command.equals("timewarn")) {
 			Warning.tempwarn(command, sender, args);
 			return true;
 		} else if (command.equals("warn")) {
 			Warning.warn(command, sender, args);
 			return true;
-		} else if (command.equals("gwarn")) {
+		} else if (command.equals("gwarn") || command.equals("globalwarn")) {
 			Warning.gwarn(command, sender, args);
 			return true;
 		} else if (command.equals("praise")) {
 			Note.praise(command, sender, args);
 			return true;
-		} else if (command.equals("gpraise")) {
+		} else if (command.equals("gpraise") || command.equals("globalpraise")) {
 			Note.gpraise(command, sender, args);
 			return true;
 		} else if (command.equals("glizer")) {
