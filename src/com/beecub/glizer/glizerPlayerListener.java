@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -35,7 +36,7 @@ public class glizerPlayerListener implements Listener {
 		playerIPs.put(event.getName().toLowerCase(), bConnector.getIPAddress(event.getAddress()));
 	}
 	
-	@EventHandler
+	@EventHandler(priority=EventPriority.HIGHEST)
 	public void onPlayerLogin(PlayerLoginEvent event) {
 		if (event.getResult() == Result.ALLOWED)
 		{
