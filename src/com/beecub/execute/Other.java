@@ -80,7 +80,7 @@ public class Other {
 
 	public static boolean theanswertolifetheuniverseandeverything(
 			String command, Player player, String[] args) {
-		bChat.sendMessageToPlayer(player, "&442");
+		bChat.sendMessage(player, "&442");
 		return true;
 	}
 

@@ -56,15 +56,15 @@ public class EditProfileRequest extends APIRequest {
         
         if(check.equalsIgnoreCase("ok")) {
             if(glizer.D) bChat.log("Profile edit action done");
-            bChat.sendMessageToPlayer(p, "&6Done");
+            bChat.sendMessage(p, "&6Done");
         }
         else if(check.equalsIgnoreCase("not allowed")) {
             if(glizer.D) bChat.log("Profile edit cant be done, its not allowed to edit this profile field");
-            bChat.sendMessageToPlayer(p, "&6Error, its not allowed to edit this profile field");
+            bChat.sendMessage(p, "&6Error, its not allowed to edit this profile field");
         }
         else if(check.equalsIgnoreCase("wrong data type")) {
             if(glizer.D) bChat.log("Profile edit cant be done, wrong data type sent");
-            bChat.sendMessageToPlayer(p, "&6Error, wrong data type");
+            bChat.sendMessage(p, "&6Error, wrong data type");
         }
 	}
 

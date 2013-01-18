@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.logging.Logger;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -155,54 +156,34 @@ public class bChat {
     
     public static void sendMessage(CommandSender sender, String message)
     {
-    	if (sender instanceof Player)
-    	{
-    		sendMessageToPlayer((Player)sender, message);
-    	}
-    	else
-    	{
-    		sendMessageToServer(message);
-    	}
+    	//Works too
+    	sender.sendMessage(message);
     }
     
-    public static void sendMessageToPlayer(Player player, String message) {
-        message = bChat.replaceColorCodes(message);
-        player.sendMessage(message);
-    }
-    
-    public static void sendMessageToServer(String message) {
-        message = bChat.replaceColorCodes(message);
-        log.info(message);
-    }
-    
-    public static void sendMessageToCommandSender(CommandSender sender, String message) {
-        if(sender instanceof Player) {
-            bChat.sendMessageToPlayer((Player) sender, message);
-        }
-        else {
-            bChat.sendMessageToServer(message);
-        }
-    }
+    //For Console
+	public static void sendMessage(String message) {
+		sendMessage(Bukkit.getConsoleSender(), message);
+	}
     
     public static void showColors(Player player) {
         String message;
-        sendMessageToPlayer(player, "&6Colors: \"&e& + ColorCode&6 + Text\"");
-        sendMessageToPlayer(player, "&6ColorCodes:");
+        sendMessage(player, "&6Colors: \"&e& + ColorCode&6 + Text\"");
+        sendMessage(player, "&6ColorCodes:");
         message = "&00 = Black           &6||   &11 = Dark Blue";
-        sendMessageToPlayer(player, message);
+        sendMessage(player, message);
         message = "&22 = Dark Green   &6||   &33 = Dark Aqua";
-        sendMessageToPlayer(player, message);
+        sendMessage(player, message);
         message = "&44 = Dark Red      &6||   &55 = Purple";
-        sendMessageToPlayer(player, message);
+        sendMessage(player, message);
         message = "&66 = Gold            &6||   &77 = Gray";
-        sendMessageToPlayer(player, message);
+        sendMessage(player, message);
         message = "&88 = Dark Gray     &6||   &99 = Blue";
-        sendMessageToPlayer(player, message);
+        sendMessage(player, message);
         message = "&aa = Green          &6||   &bb = Aqua";
-        sendMessageToPlayer(player, message);
+        sendMessage(player, message);
         message = "&cc = Red             &6||   &dd = Pink";
-        sendMessageToPlayer(player, message);
+        sendMessage(player, message);
         message = "&ee = Yellow          &6||   &ff = White";
-        sendMessageToPlayer(player, message);
+        sendMessage(player, message);
     }
 }

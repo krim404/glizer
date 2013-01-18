@@ -29,16 +29,16 @@ public class Rating {
 							return true;
 						}
 					}
-					bChat.sendMessageToPlayer(player, "&6Rating has to be between &e0&6 and &e10&6 (10 is best)");
+					bChat.sendMessage(player, "&6Rating has to be between &e0&6 and &e10&6 (10 is best)");
 					return true;
 				}
 				catch(Exception e) {
-					bChat.sendMessageToPlayer(player, "&6This is not a Integer value: &e" + args[0]);
+					bChat.sendMessage(player, "&6This is not a Integer value: &e" + args[0]);
 					return true;
 				}
 			}
-			bChat.sendMessageToPlayer(player, Language.GetTranslated("other.wrong_command_usage"));
-			bChat.sendMessageToPlayer(player, "&6/rateserver &e[value|0-10 (10 is best)]");
+			bChat.sendMessage(player, Language.GetTranslated("other.wrong_command_usage"));
+			bChat.sendMessage(player, "&6/rateserver &e[value|0-10 (10 is best)]");
 			return true;
 		}
 		return true;

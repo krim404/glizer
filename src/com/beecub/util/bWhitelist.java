@@ -60,7 +60,7 @@ public class bWhitelist {
             FileWriter fstream = new FileWriter(plugin.getDataFolder() + "/whitelistbackup/" + "white-list.txt");
             BufferedWriter out = new BufferedWriter(fstream);
             for(String strLine : whitelistPlayers) {
-//                bChat.log(strLine);
+            	if (glizer.D) bChat.log(strLine);
                 out.write(strLine);
                 out.newLine();
             }
@@ -84,11 +84,15 @@ public class bWhitelist {
     	return addWhiteList(name, true);
     }
     public static boolean addWhiteList(String name, boolean log) {
+    	if (name == null) {
+    		if (glizer.D) bChat.log("Argument cant be null");
+    		return false;
+    	}
         if(!whitelistPlayers.contains(name.toLowerCase())) {
             whitelistPlayers.add(name.toLowerCase());
             writeWhitelist();
             if (log)
-            	bChat.log(whitelistPlayers.toString());
+            	bChat.log("Whitelisted players: " + whitelistPlayers.toString());
             return true;
         }
         return false;
@@ -104,6 +108,5 @@ public class bWhitelist {
 	public static void clearWhitelist() {
 		whitelistPlayers.clear();
 		writeWhitelist();
-		
 	}
 }

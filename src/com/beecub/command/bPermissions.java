@@ -16,19 +16,12 @@ public class bPermissions {
 	
 	public static boolean checkPermission(Player player, String command)
 	{
-		if (scheckPermission(player, command))
-		{
-			return true;
-		}
-		bChat.sendMessageToPlayer(player, Language.GetTranslated("other.no_permissions"));
+		if (scheckPermission(player, command)) return true;
+		bChat.sendMessage(player, Language.GetTranslated("other.no_permissions"));
 		return false;
 	}
 
 	public static boolean scheckPermission(Player player, String command) {
-
-		/*String admin = "glizer.admin";
-		String moderator = "glizer.moderator";
-		String user = "glizer.user";*/
 
 		if (player.isOp()) {
 			return true;

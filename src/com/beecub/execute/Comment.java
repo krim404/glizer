@@ -25,8 +25,8 @@ public class Comment {
                     return true;
                 }
             }
-            bChat.sendMessageToPlayer(player, Language.GetTranslated("other.wrong_command_usage"));
-            bChat.sendMessageToPlayer(player, "&6/comment&e [playername] [message]");
+            bChat.sendMessage(player, Language.GetTranslated("other.wrong_command_usage"));
+            bChat.sendMessage(player, "&6/comment&e [playername] [message]");
             return true;
         }
         return true;
@@ -42,15 +42,15 @@ public class Comment {
                         page = page - 1;
                     }
                     catch(Exception e) {
-                        bChat.sendMessageToPlayer(player, "&6This is not a Integer value: &e" + args[1]);
+                        bChat.sendMessage(player, "&6This is not a Integer value: &e" + args[1]);
                         return false;
                     }
                 }
                 glizer.queue.add(new NoteRequest(player, args[0], page, NoteRequest.Comments));
                 return true;
             }
-            bChat.sendMessageToPlayer(player, Language.GetTranslated("other.wrong_command_usage"));
-            bChat.sendMessageToPlayer(player, "&6/comments&e [playername] [(page)]");
+            bChat.sendMessage(player, Language.GetTranslated("other.wrong_command_usage"));
+            bChat.sendMessage(player, "&6/comments&e [playername] [(page)]");
             return true;
         }
         return true;

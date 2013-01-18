@@ -54,7 +54,7 @@ public class OnlineTimeRequest extends APIRequest {
 					if (rawtime < 60) {
 						unit = "minutes";
 						time = Integer.toString(rawtime);
-						bChat.sendMessageToPlayer(
+						bChat.sendMessage(
 								p,
 								"&6"
 										+ o.getString("server")
@@ -66,7 +66,7 @@ public class OnlineTimeRequest extends APIRequest {
 						unit = "hours";
 						time = Integer
 								.toString((int) (((float) rawtime) / 60.f));
-						bChat.sendMessageToPlayer(
+						bChat.sendMessage(
 								p,
 								"&6"
 										+ o.getString("server")
@@ -78,7 +78,7 @@ public class OnlineTimeRequest extends APIRequest {
 						time = Integer
 								.toString((int) (((float) rawtime) / 1440.f));
 						float hours = ((float) (rawtime % 1440)) / 60;
-						bChat.sendMessageToPlayer(
+						bChat.sendMessage(
 								p,
 								"&6"
 										+ o.getString("server")
@@ -94,7 +94,7 @@ public class OnlineTimeRequest extends APIRequest {
 			} else
 				throw new IllegalArgumentException();
 		} catch (Exception e) {
-			bChat.sendMessageToPlayer(p,
+			bChat.sendMessage(p,
 			Language.GetTranslated("other.noglizerregistered", new String[]{recipient}));
 		}
 	}

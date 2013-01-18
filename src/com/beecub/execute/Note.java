@@ -23,7 +23,7 @@ public class Note {
                     value = Integer.valueOf(args[1]);
                 }
                 catch(Exception e) {
-                    bChat.sendMessageToPlayer(player, "&6This is not a Integer value: &e" + args[1]);
+                    bChat.sendMessage(player, "&6This is not a Integer value: &e" + args[1]);
                     return false;
                 }
                 for(int i = 2; i < args.length; i++) {
@@ -34,8 +34,8 @@ public class Note {
                 	return true;
                 }
             }
-            bChat.sendMessageToPlayer(player, Language.GetTranslated("other.wrong_command_usage"));
-            bChat.sendMessageToPlayer(player, "&6/note&e [playername] [reputation|-100 to 100] [message]");
+            bChat.sendMessage(player, Language.GetTranslated("other.wrong_command_usage"));
+            bChat.sendMessage(player, "&6/note&e [playername] [reputation|-100 to 100] [message]");
             return true;
         }
         return true;
@@ -55,15 +55,15 @@ public class Note {
                         page = page - 1;
                     }
                     catch(Exception e) {
-                        bChat.sendMessageToPlayer(player, "&6This is not a Integer value: &e" + args[1]);
+                        bChat.sendMessage(player, "&6This is not a Integer value: &e" + args[1]);
                         return false;
                     }
                 }
                 glizer.queue.add(new NoteRequest(player, recipient, page, (local?NoteRequest.LocalNotes:NoteRequest.Notes)));
                 return true;
             }
-            bChat.sendMessageToPlayer(player, Language.GetTranslated("other.wrong_command_usage"));
-            bChat.sendMessageToPlayer(player, "&6/warnings&e [playername] [(page)]");
+            bChat.sendMessage(player, Language.GetTranslated("other.wrong_command_usage"));
+            bChat.sendMessage(player, "&6/warnings&e [playername] [(page)]");
             return true;
         }
         return true;

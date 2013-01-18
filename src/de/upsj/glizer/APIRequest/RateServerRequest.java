@@ -46,11 +46,11 @@ public class RateServerRequest extends APIRequest {
 
 		if(check.equalsIgnoreCase("ok")) {
 			if(glizer.D) bChat.log("Server rate action done");
-			bChat.sendMessageToPlayer(p, "&6Successfully added your Rating");
+			bChat.sendMessage(p, "&6Successfully added your Rating");
 		}
 		else if(check.equalsIgnoreCase("wrong data type")) {
 			if(glizer.D) bChat.log("Server rate action cant be done, wrong data type sent");
-			bChat.sendMessageToPlayer(p, "&6Error, wrong data type");
+			bChat.sendMessage(p, "&6Error, wrong data type");
 		}		
 	}
 
