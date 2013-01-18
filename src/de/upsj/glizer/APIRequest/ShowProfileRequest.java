@@ -42,17 +42,17 @@ public class ShowProfileRequest extends APIRequest {
 			return;
 		if (result == null)
         {
-        	bChat.sendMessageToPlayer(p, "&6There is propably no glizer-registered player with the account name &e" + recipient);
+        	bChat.sendMessage(p, "&6There is propably no glizer-registered player with the account name &e" + recipient);
         }
 		
-        bChat.sendMessageToPlayer(p, "&6 --- Profile --- ");
+        bChat.sendMessage(p, "&6 --- Profile --- ");
         if (result.optInt("developer", 0) == 1)
-        	bChat.sendMessageToPlayer(p, "&3"+recipient+" is a member of the glizer team.");
-        bChat.sendMessageToPlayer(p, "&6Name: &e" + result.optString("name", "unknown"));
-        bChat.sendMessageToPlayer(p, "&6Realname: &e" + result.optString("realname", "unknown"));
-        bChat.sendMessageToPlayer(p, "&6Age: &e" + result.optString("age", "unknown"));
-        bChat.sendMessageToPlayer(p, "&6Last Server: &e" + result.optString("lastserverurl", "unknown"));
-        bChat.sendMessageToPlayer(p, "&6Status: &e" + result.optString("status", "unknown"));
+        	bChat.sendMessage(p, "&3"+recipient+" is a member of the glizer team.");
+        bChat.sendMessage(p, "&6Name: &e" + result.optString("name", "unknown"));
+        bChat.sendMessage(p, "&6Realname: &e" + result.optString("realname", "unknown"));
+        bChat.sendMessage(p, "&6Age: &e" + result.optString("age", "unknown"));
+        bChat.sendMessage(p, "&6Last Server: &e" + result.optString("lastserverurl", "unknown"));
+        bChat.sendMessage(p, "&6Status: &e" + result.optString("status", "unknown"));
 	}
 
 }

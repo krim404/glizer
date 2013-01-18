@@ -20,8 +20,8 @@ public class Profile {
             	glizer.queue.add(new ShowProfileRequest(player, recipient));
                 return true;
             }
-            bChat.sendMessageToPlayer(player, Language.GetTranslated("other.wrong_command_usage"));
-            bChat.sendMessageToPlayer(player, "&6/profile&e [playername]");
+            bChat.sendMessage(player, Language.GetTranslated("other.wrong_command_usage"));
+            bChat.sendMessage(player, "&6/profile&e [playername]");
             return true;
         }
         return true;
@@ -39,8 +39,8 @@ public class Profile {
                 return true;
                 
             }
-            bChat.sendMessageToPlayer(player, Language.GetTranslated("other.wrong_command_usage"));
-            bChat.sendMessageToPlayer(player, "&6/editprofile&e [field] [value]");
+            bChat.sendMessage(player, Language.GetTranslated("other.wrong_command_usage"));
+            bChat.sendMessage(player, "&6/editprofile&e [field] [value]");
             return true;
         }
         return true;

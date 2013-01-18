@@ -45,12 +45,11 @@ public class bTimer extends Thread {
     	}
     }
     
-    @SuppressWarnings("static-access")
     public boolean heartbeat(Player [] players, int count) {        
         if(count > 0) {
         	counter++;
      //       Whitelist.getPlayers();
-        	glizer.banqueue.flushQueue();
+        	com.beecub.glizer.glizer.banqueue.flushQueue();
         	HashMap<String, String> url_items = new HashMap<String, String>();        
             url_items.put("exec", "heartbeat");
             url_items.put("ip", "1.1.1.1");
@@ -78,7 +77,7 @@ public class bTimer extends Thread {
             
             if(check.equalsIgnoreCase("ok")) {
                 bChat.log("Heartbeat, Online Players: " + players.length);
-                glizer.offline = false;
+                com.beecub.glizer.glizer.offline = false;
                 return false;
             }
             else if(check.equalsIgnoreCase("to fast")) {
@@ -158,7 +157,7 @@ public class bTimer extends Thread {
         }
         else if (count == 0)
         {
-            glizer.offline = true;
+            com.beecub.glizer.glizer.offline = true;
             return true;
         }
         return true;

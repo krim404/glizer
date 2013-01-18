@@ -51,21 +51,21 @@ public class FriendRequest extends APIRequest {
         }
         else if(check.equalsIgnoreCase("never connected")) {
             if(glizer.D) bChat.log("Friend action cant be done, player never connected to this server");
-            bChat.sendMessageToPlayer(player, "&6Error, Player &e" + friend + "&6 was never connected to this server");
+            bChat.sendMessage(player, "&6Error, Player &e" + friend + "&6 was never connected to this server");
             return;
         }
         else if(check.equalsIgnoreCase("not yourself")) {
             if(glizer.D) bChat.log("Friend action cant be done, not to command user himself");
-            bChat.sendMessageToPlayer(player, "&6Error, you cant do this to yourself");
+            bChat.sendMessage(player, "&6Error, you cant do this to yourself");
             return;
         }
         if (action.equalsIgnoreCase("add"))
         {
-            bChat.sendMessageToPlayer(player, "&6Added Friend");
+            bChat.sendMessage(player, "&6Added Friend");
         }
         if (action.equalsIgnoreCase("remove"))
         {
-            bChat.sendMessageToPlayer(player, "&6Removed Friend");
+            bChat.sendMessage(player, "&6Removed Friend");
         }
 	}
 }

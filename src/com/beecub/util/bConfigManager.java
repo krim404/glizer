@@ -184,8 +184,8 @@ public class bConfigManager {
             conf.set("features.usecomments", true);
             conf.set("features.useratings", true);
             conf.set("features.useevents", false);
-            conf.set("features.noip",false);
-            conf.set("features.bungeeCord",false);
+            conf.set("features.noip", false);
+            conf.set("features.bungeeCord", false);
             
             // announces
             conf.set("announcing.broadcastWarning", false);

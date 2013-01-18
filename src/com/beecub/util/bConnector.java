@@ -21,6 +21,10 @@ public class bConnector {
 
 	public static JSONObject hdl_com(HashMap<String, String> items) 
 	{
+		if (items == null) {
+			if(glizer.D) bChat.log("Argument cant be null!", 2);
+			return null;
+		}
 		String url_req = urlParse(items);
 		if(glizer.D) glizer.log.info("url_req " + url_req);
 		String json_text = APIRequest(url_req);
@@ -31,6 +35,10 @@ public class bConnector {
 
 	@SuppressWarnings("rawtypes")
 	public static String urlParse(HashMap<String, String> items) {
+		if (items == null) {
+			if(glizer.D) bChat.log("Argument cant be null!", 2);
+			return "";
+		}
 		String data = "";
 		try {
 			for (Map.Entry entry : items.entrySet()) {

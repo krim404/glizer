@@ -214,18 +214,18 @@ public class bCommandRouter {
 						args);
 				return true;
 			} else {
-				bChat.sendMessageToPlayer(player, Language.GetTranslated("other.not_a_glizer_command"));
+				bChat.sendMessage(player, Language.GetTranslated("other.not_a_glizer_command"));
 				return true;
 			}
 			if (ret.equalsIgnoreCase("disabled")) {
-				bChat.sendMessageToPlayer(player,Language.GetTranslated("other.feature_disabled"));
+				bChat.sendMessage(player,Language.GetTranslated("other.feature_disabled"));
 				return true;
 			} else {
 				return true;
 			}
 
 		} else {
-			bChat.sendMessageToServer(Language.GetTranslated("other.command_from_console"));
+			bChat.sendMessage(Language.GetTranslated("other.command_from_console"));
 			return true;
 		}
 	}

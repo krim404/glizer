@@ -16,7 +16,7 @@ public class UpToDateTask implements Runnable {
 			{
 				if (bPermissions.scheckPermission(p, "glizerupdate"))
 				{
-					bChat.sendMessageToPlayer(p, "&eA new version of glizer is available! You should update soon!");
+					bChat.sendMessage(p, "&eA new version of glizer is available! You should update soon!");
 				}
 			}
 		}

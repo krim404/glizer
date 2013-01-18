@@ -16,7 +16,7 @@ public class Friend {
             	glizer.queue.add(new ListFriendsRequest(player));
                 return true;
             }
-            bChat.sendMessageToPlayer(player, Language.GetTranslated("other.wrong_command_usage"));
+            bChat.sendMessage(player, Language.GetTranslated("other.wrong_command_usage"));
             return true;
         }
         return true;
@@ -28,7 +28,7 @@ public class Friend {
             	glizer.queue.add(new FriendRequest(player, args[0], "add"));
             	return true;
             }
-            bChat.sendMessageToPlayer(player, Language.GetTranslated("other.wrong_command_usage"));
+            bChat.sendMessage(player, Language.GetTranslated("other.wrong_command_usage"));
             return true;
         }
         return true;
@@ -40,7 +40,7 @@ public class Friend {
                 glizer.queue.add(new FriendRequest(player, args[0], "remove"));
                 return true;
             }
-            bChat.sendMessageToPlayer(player, Language.GetTranslated("other.wrong_command_usage"));
+            bChat.sendMessage(player, Language.GetTranslated("other.wrong_command_usage"));
             return true;
         }
         return true;
