@@ -39,6 +39,7 @@
             <version>1.4.6-R0.4-SNAPSHOT</version>
             <type>jar</type>
   	</dependency>
+  	</dependencies>
   	<repositories>
    		<repository>
       	    <id>bukkit-repo</id>
