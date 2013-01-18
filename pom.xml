@@ -34,14 +34,14 @@
   </build>
   <dependencies>
   	<dependency>
-  		<groupId>org.bukkit</groupId>
-  		<artifactId>bukkit</artifactId>
-  		<version>1.4.6</version>
+    	<groupId>org.bukkit</groupId>
+            <artifactId>bukkit</artifactId>
+            <version>1.4.6-R0.4-SNAPSHOT</version>
+            <type>jar</type>
   	</dependency>
-  </dependencies>
-  <repositories>
-        <repository>
-            <id>bukkit-repo</id>
+  	<repositories>
+   		<repository>
+      	    <id>bukkit-repo</id>
             <url>http://repo.bukkit.org/content/groups/public</url>
         </repository>
     </repositories>
