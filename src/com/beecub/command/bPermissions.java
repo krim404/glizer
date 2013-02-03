@@ -39,9 +39,12 @@ public class bPermissions {
 			}
 		} else if (command.equalsIgnoreCase("glizer")) {
 			return true;
-		} else if (command.equalsIgnoreCase("kick")
-				|| command.equalsIgnoreCase("skick")) {
+		} else if (command.equalsIgnoreCase("kick")) {
 			if (player.hasPermission("glizer.kick")) {
+				return true;
+			}
+		} else if (command.equalsIgnoreCase("skick")) {
+			if (player.hasPermission("glizer.skick")) {
 				return true;
 			}
 		}
@@ -49,15 +52,15 @@ public class bPermissions {
 			if (player.hasPermission("glizer.ban.ban")) {
 				return true;
 			}
-		} else if (command.equalsIgnoreCase("globalban")) {
+		} else if (command.equalsIgnoreCase("globalban") || command.equalsIgnoreCase("gban")) {
 			if (player.hasPermission("glizer.ban.globalban")) {
 				return true;
 			}
-		} else if (command.equalsIgnoreCase("localban")) {
+		} else if (command.equalsIgnoreCase("localban") || command.equalsIgnoreCase("lban")) {
 			if (player.hasPermission("glizer.ban.localban")) {
 				return true;
 			}
-		} else if (command.equalsIgnoreCase("tempban")) {
+		} else if (command.equalsIgnoreCase("tempban") || command.equalsIgnoreCase("timeban")) {
 			if (player.hasPermission("glizer.ban.tempban")) {
 				return true;
 			}
@@ -69,7 +72,7 @@ public class bPermissions {
 			if (player.hasPermission("glizer.praise")) {
 				return true;
 			}
-		} else if (command.equalsIgnoreCase("gpraise")) {
+		} else if (command.equalsIgnoreCase("gpraise") || command.equalsIgnoreCase("globalpraise")) {
 				if (player.hasPermission("glizer.gpraise")) {
 					return true;
 				}
@@ -85,11 +88,11 @@ public class bPermissions {
 			if (player.hasPermission("glizer.warning.warn")) {
 				return true;
 			}
-		} else if (command.equalsIgnoreCase("gwarn")) {
+		} else if (command.equalsIgnoreCase("gwarn") || command.equalsIgnoreCase("globalwarn")) {
 			if (player.hasPermission("glizer.warning.gwarn")) {
 				return true;
 			}
-		} else if (command.equalsIgnoreCase("tempwarn")) {
+		} else if (command.equalsIgnoreCase("tempwarn") || command.equalsIgnoreCase("timewarn")) {
 			if (player.hasPermission("glizer.warning.tempwarn")) {
 				return true;
 			}

@@ -205,6 +205,7 @@ permissions:
   glizer.moderator:
     children:
       glizer.kick: true
+      glizer.skick: true
       glizer.ban.ban: true
       glizer.ban.globalban: true
       glizer.ban.localban: true
@@ -273,6 +274,8 @@ permissions:
     description: register
   glizer.kick:
     description: kick
+  glizer.skick:
+    description: silentkick
   glizer.ban.ban:
     description: ban
   glizer.ban.globalban:
