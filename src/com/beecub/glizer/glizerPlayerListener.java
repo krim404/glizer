@@ -3,16 +3,21 @@ package com.beecub.glizer;
 import java.util.HashMap;
 import java.util.Map;
 
+import me.boomer41.glizer.mute.Mute;
+import me.boomer41.glizer.mute.MuteTime;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerLoginEvent.Result;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import com.beecub.util.Language;
 import com.beecub.util.bBackupManager;
 import com.beecub.util.bChat;
 import com.beecub.util.bConfigManager;
@@ -94,4 +99,23 @@ public class glizerPlayerListener implements Listener {
 	public void onPlayerQuit(PlayerQuitEvent event) {
 		glizer.queue.add(new LogoutRequest(event.getPlayer()));
 	}
+	
+	@EventHandler
+	public void onPlayerChat(AsyncPlayerChatEvent event) {
+		if (Mute.isMuted(event.getPlayer().getName())) {
+			MuteTime mute = Mute.getMute(event.getPlayer().getName());
+			if (mute.isTemporary()) {
+				bChat.sendMessage(event.getPlayer(), Language.GetTranslated("mute.muted_temporary")
+														.replace("$1", mute.getMuter())
+														.replace("$2", String.valueOf(mute.getTimeLeft()))
+														.replace("$3", mute.getReason()));
+			} else {
+				bChat.sendMessage(event.getPlayer(), Language.GetTranslated("mute.muted_permanent")
+														.replace("$1", mute.getMuter())
+														.replace("$2", mute.getReason()));
+			}
+			event.setCancelled(true);
+		}
+	}
+	
 }

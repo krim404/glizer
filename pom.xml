@@ -36,7 +36,13 @@
   	<dependency>
   		<groupId>org.bukkit</groupId>
   		<artifactId>bukkit</artifactId>
-  		<version>1.4.6</version>
+  		<version>1.4.7-R1.0</version>
   	</dependency>
   </dependencies>
+  <repositories>
+        <repository>
+            <id>bukkit-repo</id>
+            <url>http://repo.bukkit.org/content/groups/public</url>
+        </repository>
+    </repositories>
 </project>

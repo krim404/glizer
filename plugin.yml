@@ -2,7 +2,7 @@ name: glizer
 main: com.beecub.glizer.glizer
 version: 2.3.3.0
 author: upsj
-website: 'http://glizer.de/'
+website: 'http://glizer.net/'
 description: >
              Minecraft Globalizer
 commands:
@@ -222,6 +222,7 @@ permissions:
       glizer.warning.warnings: true
       glizer.reputation.message: true
       glizer.user: true
+      glizer.mute.mute: true
   glizer.user:
     children:
       glizer.comment.comment: true
@@ -306,3 +307,5 @@ permissions:
     description: warnings
   glizer.reputation.message:
     description: reputationmessage
+  glizer.mute.mute:
+    description: permmute
