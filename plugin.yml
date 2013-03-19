@@ -195,6 +195,11 @@ commands:
     description: Lists all possible accounts of this player
     usage: |
            /<command> [playername]
+  mute:
+    description: Mute a player!
+    usage: |
+           /<command> [playername] [reason]
+
 permissions:
   glizer.admin:
     children:
