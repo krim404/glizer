@@ -317,7 +317,7 @@ public class glizer extends JavaPlugin {
 		} 
 	}
 
-	public static boolean heartbeat(glizer glizer) {
+	public static boolean heartbeat(final glizer glizer) {
 		heartbeatThread = new bTimer (glizer);	
 		heartbeatCheckThread = new HeartbeatChecker(glizer, heartbeatThread);
 
@@ -333,7 +333,7 @@ public class glizer extends JavaPlugin {
 						sleep(1000);
 					} catch (InterruptedException e)
 					{
-						e.printStackTrace();
+						if (glizer.D) e.printStackTrace();
 					}
 					long end = System.nanoTime();
 					float x = end-start;
