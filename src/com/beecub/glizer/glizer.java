@@ -122,20 +122,30 @@ public class glizer extends JavaPlugin {
 	
 	@Override
 	public void onDisable() {
-		if (heartbeatStartThread != null && heartbeatStartThread.isAlive())
-			heartbeatStartThread.interrupt();
-		if (heartbeatCheckThread != null && heartbeatCheckThread.isAlive())
-			heartbeatCheckThread.interrupt();
-		if (heartbeatThread != null && heartbeatThread.isAlive())
-			heartbeatThread.interrupt();
-		Mute.mutetimer.interrupt();
-		Mute.mutetimer = null;
+		try {
+			if (heartbeatStartThread != null && heartbeatStartThread.isAlive())
+				heartbeatStartThread.interrupt();
+		} catch (Exception e) { if (glizer.D) e.printStackTrace(); }
+		try {
+			if (heartbeatCheckThread != null && heartbeatCheckThread.isAlive())
+				heartbeatCheckThread.interrupt();
+		} catch (Exception e) { if (glizer.D) e.printStackTrace(); }
+		try {
+			if (heartbeatThread != null && heartbeatThread.isAlive())
+				heartbeatThread.interrupt();
+		} catch (Exception e) { if (glizer.D) e.printStackTrace(); }
+		try {
+			Mute.mutetimer.interrupt();
+			Mute.mutetimer = null;
+		} catch (Exception e) { if (glizer.D) e.printStackTrace(); }
 		heartbeatStartThread = null;
 		heartbeatThread = null;
 		heartbeatCheckThread = null;
 		
-		if (apiRequestThread != null && apiRequestThread.isAlive())
-			apiRequestThread.interrupt();
+		try {
+			if (apiRequestThread != null && apiRequestThread.isAlive())
+				apiRequestThread.interrupt();
+		} catch (Exception e) { if (glizer.D) e.printStackTrace(); }
 		if(serverLogout()) {
 		}
 		bChat.log(messagePluginName + " Alpha " + pdfFile.getVersion() + " (Jackr)" + " disabled!");
@@ -326,7 +336,7 @@ public class glizer extends JavaPlugin {
 						e.printStackTrace();
 					}
 					long end = System.nanoTime();
-					float x = (float)(end-start);
+					float x = end-start;
 					time += x/1000000.f;
 				}
 				heartbeatThread.start();
@@ -347,6 +357,7 @@ class HeartbeatChecker extends Thread {
 		pGlizer = xpglizer;
 		this.pHeartbeatThread = pHeartbeatThread;
 	}
+	@Override
 	public void run(){
 		while (true)
 		{    				
