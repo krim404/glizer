@@ -129,8 +129,10 @@ public class Language {
 		m_ENMap.put("mute.gotmuted_permanent", "&6You got muted by &e$1&6: &e$2");
 		m_ENMap.put("mute.gotmuted_temporary", "&6You got muted by &e$1&6 for &e$2&6 minutes: &e$3");
 		m_ENMap.put("mute.player_not_online", "&6The player &e$1&6 isn't online!");
+		m_ENMap.put("mute.player_not_muted", "&6The player &e$1&6 isn't muted!");
 		m_ENMap.put("mute.time_negative", "&6You can't enter a negative time!");
 		m_ENMap.put("mute.gotunmuted", "&6You got unmuted!");
+		m_ENMap.put("mute.player_unmuted", "&6You unmuted &e$1&6");
 		m_Language.put("__en", m_ENMap);
 
 		if (en == false) {

@@ -203,6 +203,10 @@ commands:
     description: Mute a player!
     usage: |
            /<command> [playername] [time in minutes] [reason]
+  unmute:
+    description: Unmute a player!
+    usage: |
+           /<command> [playername
 permissions:
   glizer.admin:
     children:
@@ -232,6 +236,7 @@ permissions:
       glizer.user: true
       glizer.mute.mute: true
       glizer.mute.tempmute: true
+      glizer.mute.unmute: true
   glizer.user:
     children:
       glizer.comment.comment: true
@@ -320,3 +325,5 @@ permissions:
     description: permmute
   glizer.mute.tempmute:
     description: tempmute
+  glizer.mute.unmute:
+    description: unmute

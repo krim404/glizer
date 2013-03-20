@@ -34,6 +34,10 @@ public class Mute {
 				} else {
 					bChat.sendMessage(sender, Language.GetTranslated("mute.player_not_online", user));
 				}
+			} else {
+				bChat.sendMessage(sender,
+						Language.GetTranslated("other.wrong_command_usage"));
+				bChat.sendMessage(sender, "&6/mute&e [playername] [reason]");
 			}
 		}
 		return true;
@@ -45,7 +49,7 @@ public class Mute {
 				String reason = "";
 				double time = Double.parseDouble(args[1]) * 60;
 				if (time < 1) {
-					
+					bChat.sendMessage(sender, Language.GetTranslated("mute.time_negative"));
 				} else {
 					String user = args[0];
 					for(int i = 2; i < args.length; i++) {
@@ -61,7 +65,30 @@ public class Mute {
 					}
 				}
 			} else {
-				bChat.sendMessage(sender, Language.GetTranslated("mute.time_negative"));
+				bChat.sendMessage(sender,
+						Language.GetTranslated("other.wrong_command_usage"));
+				bChat.sendMessage(sender, "&6/tempmute&e [playername] [minutes] [reason]");
+			}
+		}
+		return true;
+	}
+	
+	public static boolean unmute(String command, CommandSender sender, String[] args) {
+		if(bPermissions.checkPermission(sender, command)) {
+			if (args.length == 1) {
+				String user = args[0];
+				MuteTime mute = getMute(user);
+				if (mute != null) {
+					mute.disable();
+					bChat.sendMessage(sender, Language.GetTranslated("mute.player_unmuted", user));
+					bChat.sendMessage(Bukkit.getPlayerExact(user), Language.GetTranslated("mute.gotunmuted", sender.getName()));
+				} else {
+					bChat.sendMessage(sender, Language.GetTranslated("mute.player_not_muted", user));
+				}
+			} else {
+				bChat.sendMessage(sender,
+						Language.GetTranslated("other.wrong_command_usage"));
+				bChat.sendMessage(sender, "&6/unmute&e [playername]");
 			}
 		}
 		return true;
@@ -78,6 +105,7 @@ public class Mute {
 		for (MuteTime mute : clone) {
 			if (mute.isActive() && mute.getUser().equalsIgnoreCase(name)) {
 				theMute = mute;
+				break;
 			}
 		}
 		clone = null;
