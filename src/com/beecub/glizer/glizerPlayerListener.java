@@ -6,6 +6,7 @@ import java.util.Map;
 import me.boomer41.glizer.mute.Mute;
 import me.boomer41.glizer.mute.MuteTime;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -30,11 +31,6 @@ import de.upsj.glizer.APIRequest.LogoutRequest;
 
 public class glizerPlayerListener implements Listener {
 	Map<String, String> playerIPs = new HashMap<String, String>();
-	glizer glz;
-	public glizerPlayerListener(glizer glizer) 
-	{
-		this.glz = glizer;
-	}
 
 	@EventHandler
 	public void onPlayerPreLogin(AsyncPlayerPreLoginEvent event)
@@ -81,7 +77,7 @@ public class glizerPlayerListener implements Listener {
 			{
 				event.disallow(Result.KICK_BANNED, bConfigManager.ipcheck_joinmessage);
 				bChat.log(com.beecub.glizer.glizer.messagePluginName + " Bungee Cord error.", 2);
-				glz.getServer().getPluginManager().disablePlugin(glz);
+				Bukkit.getPluginManager().disablePlugin(glizer.plugin);
 			}
 		}
 		glizer.queue.add(new LoginRequest(event.getPlayer(), ip));

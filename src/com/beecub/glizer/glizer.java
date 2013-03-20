@@ -71,7 +71,7 @@ public class glizer extends JavaPlugin {
 
 		pdfFile = this.getDescription();
 		PluginManager pm = getServer().getPluginManager();
-		pm.registerEvents(new glizerPlayerListener(this), this);
+		pm.registerEvents(new glizerPlayerListener(), this);
 
 		bConfigManager bConfigManager = new bConfigManager(this);
 		bBackupManager bBackupManager = new bBackupManager(this);
