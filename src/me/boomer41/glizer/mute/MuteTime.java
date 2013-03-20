@@ -3,6 +3,9 @@ package me.boomer41.glizer.mute;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import com.beecub.util.Language;
+import com.beecub.util.bChat;
+
 public class MuteTime {
 	
 	private boolean isTemporary = false;
@@ -27,7 +30,7 @@ public class MuteTime {
 				isActive = false;
 				Player muted = Bukkit.getPlayerExact(user);
 				if (muted != null) {
-					
+					bChat.sendMessage(muted, Language.GetTranslated("mute.gotunmuted"));
 				}
 			}
 		}

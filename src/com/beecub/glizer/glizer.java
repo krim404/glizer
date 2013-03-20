@@ -366,7 +366,7 @@ class HeartbeatChecker extends Thread {
 				sleep(60000);
 			}
 			catch (InterruptedException e) {
-				e.printStackTrace();
+				if (glizer.D) e.printStackTrace();
 			}
 
 			if (pHeartbeatThread != null && !pHeartbeatThread.isAlive())
