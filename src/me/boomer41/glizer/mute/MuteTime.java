@@ -1,5 +1,8 @@
 package me.boomer41.glizer.mute;
 
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+
 public class MuteTime {
 	
 	private boolean isTemporary = false;
@@ -22,6 +25,10 @@ public class MuteTime {
 			time--;
 			if (time <= 0) {
 				isActive = false;
+				Player muted = Bukkit.getPlayerExact(user);
+				if (muted != null) {
+					
+				}
 			}
 		}
 	}
@@ -48,6 +55,10 @@ public class MuteTime {
 
 	public String getMuter() {
 		return muter;
+	}
+	
+	public void disable() {
+		isActive = false;
 	}
 	
 }

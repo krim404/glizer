@@ -2,6 +2,7 @@ package me.boomer41.glizer.mute;
 
 import java.util.ArrayList;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import com.beecub.command.bPermissions;
 
@@ -23,8 +24,12 @@ public class Mute {
 				for(int i = 1; i < args.length; i++) {
 					reason += args[i] + " ";
 				}
-				MuteTime mute = new MuteTime(user, sender.getName(), -1, reason);
-				muted.add(mute);
+				if (Bukkit.getPlayerExact(user) != null) {
+					MuteTime mute = new MuteTime(user, sender.getName(), -1, reason);
+					muted.add(mute);
+				} else {
+					
+				}
 			}
 		}
 		return true;

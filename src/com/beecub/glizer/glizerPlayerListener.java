@@ -12,6 +12,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerLoginEvent.Result;
@@ -115,6 +116,27 @@ public class glizerPlayerListener implements Listener {
 														.replace("$2", mute.getReason()));
 			}
 			event.setCancelled(true);
+		}
+	}
+	
+	@EventHandler
+	public void onPlayerCommand(PlayerCommandPreprocessEvent event) {
+		String[] command = event.getMessage().split(" ");
+		if (bConfigManager.mute_commands.contains(command[0])) {
+			if (Mute.isMuted(event.getPlayer().getName())) {
+				MuteTime mute = Mute.getMute(event.getPlayer().getName());
+				if (mute.isTemporary()) {
+					bChat.sendMessage(event.getPlayer(), Language.GetTranslated("mute.muted_temporary",
+															mute.getMuter(), 
+															String.valueOf(mute.getTimeLeft()),
+															mute.getReason()));
+				} else {
+					bChat.sendMessage(event.getPlayer(), Language.GetTranslated("mute.muted_permanent",
+															mute.getMuter(),
+															mute.getReason()));
+				}
+				event.setCancelled(true);
+			}
 		}
 	}
 	
