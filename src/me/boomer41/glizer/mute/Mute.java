@@ -45,7 +45,7 @@ public class Mute {
 	
 	public static boolean tempmute(String command, CommandSender sender, String[] args) {
 		if(bPermissions.checkPermission(sender, command)) {
-			if (args.length >= 2) {
+			if (args.length >= 3) {
 				String reason = "";
 				double time = Double.parseDouble(args[1]) * 60;
 				if (time < 1) {
@@ -56,8 +56,8 @@ public class Mute {
 						reason += args[i] + " ";
 					}
 					if (Bukkit.getPlayerExact(user) != null) {
-						bChat.sendMessage(sender, Language.GetTranslated("mute.playermuted_temporary", user, String.valueOf(time), reason));
-						bChat.sendMessage(Bukkit.getPlayerExact(user), Language.GetTranslated("mute.gotmuted_temporary", sender.getName(), String.valueOf(time), reason));
+						bChat.sendMessage(sender, Language.GetTranslated("mute.playermuted_temporary", user, String.valueOf((int) (time / 60)), reason));
+						bChat.sendMessage(Bukkit.getPlayerExact(user), Language.GetTranslated("mute.gotmuted_temporary", sender.getName(), String.valueOf((int) (time / 60)), reason));
 						MuteTime mute = new MuteTime(user, sender.getName(), time, reason);
 						muted.add(mute);
 					} else {

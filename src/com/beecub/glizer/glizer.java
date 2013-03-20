@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Properties;
 import java.util.Queue;
+import java.util.Timer;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.logging.Logger;
 
@@ -111,7 +112,8 @@ public class glizer extends JavaPlugin {
 		this.getServer().getScheduler().scheduleSyncRepeatingTask(this, new TickCounter(this), 200, 200);
 		this.getServer().getScheduler().scheduleSyncRepeatingTask(this, new UpToDateTask(), 2000, 2000);
 		Mute.mutetimer = new MuteTimer();
-		this.getServer().getScheduler().scheduleSyncRepeatingTask(this, Mute.mutetimer, 1000, 1000);
+		Timer mutet = new Timer();
+		mutet.scheduleAtFixedRate(Mute.mutetimer, 1000, 1000);
 
 		Backup.getPlayers();
 		Whitelist.getPlayers();
@@ -135,7 +137,7 @@ public class glizer extends JavaPlugin {
 				heartbeatThread.interrupt();
 		} catch (Exception e) { if (glizer.D) e.printStackTrace(); }
 		try {
-			Mute.mutetimer.interrupt();
+			Mute.mutetimer.cancel();
 			Mute.mutetimer = null;
 		} catch (Exception e) { if (glizer.D) e.printStackTrace(); }
 		heartbeatStartThread = null;
@@ -318,7 +320,7 @@ public class glizer extends JavaPlugin {
 	}
 
 	public static boolean heartbeat(final glizer glizer) {
-		heartbeatThread = new bTimer (glizer);	
+		heartbeatThread = new bTimer();	
 		heartbeatCheckThread = new HeartbeatChecker(glizer, heartbeatThread);
 
 		heartbeatStartThread = new Thread(){
@@ -374,7 +376,7 @@ class HeartbeatChecker extends Thread {
 				bChat.log("Heartbeat cancelled, attempting to restart it.");
 				pHeartbeatThread.interrupt();
 				pHeartbeatThread = null;
-				pHeartbeatThread = new bTimer (pGlizer);
+				pHeartbeatThread = new bTimer();
 				pHeartbeatThread.start();
 			}
 		}

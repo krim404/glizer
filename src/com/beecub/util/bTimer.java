@@ -12,40 +12,33 @@ import com.beecub.glizer.glizer;
 public class bTimer extends Thread {
     
 	int counter;
-	
-    glizer glizer;
     
-    public bTimer(glizer glizer){
-        this.glizer = glizer;
+    public bTimer(){
         counter = 0;
     }
     
-    @SuppressWarnings("static-access")
     public void run() {
     	while(true)
     	{
  //   		bChat.log("Heartbeat");
-	    	Player [] players = glizer.getServer().getOnlinePlayers();
+	    	Player [] players = glizer.plugin.getServer().getOnlinePlayers();
 	        if(heartbeat(players, 5))
 	        {
-	            if(glizer.D) bChat.log("Heartbeat failed. Trying again in 1h");
+	            if(com.beecub.glizer.glizer.D) bChat.log("Heartbeat failed. Trying again in 1h");
 	            try {
 					sleep(360000);
 				} catch (InterruptedException e) {
-					e.printStackTrace();
-					return;
+					if (com.beecub.glizer.glizer.D) e.printStackTrace();
 				}
 	        }
 	        try {
 				sleep(Math.max(0L, 300000));
 			} catch (InterruptedException e) {
-				e.printStackTrace();
-				return;
+				if (com.beecub.glizer.glizer.D) e.printStackTrace();
 			}
     	}
     }
     
-    @SuppressWarnings("static-access")
     public boolean heartbeat(Player [] players, int count) {        
         if(count > 0) {
         	counter++;
@@ -85,7 +78,7 @@ public class bTimer extends Thread {
             	try {
 					sleep(300000);
 				} catch (InterruptedException e) {
-					e.printStackTrace();
+					if (com.beecub.glizer.glizer.D) e.printStackTrace();
 				}
             	return false;
             }
@@ -94,7 +87,7 @@ public class bTimer extends Thread {
                 try {
 					sleep(15*1000);
 				} catch (InterruptedException e) {
-					e.printStackTrace();
+					if (com.beecub.glizer.glizer.D) e.printStackTrace();
 					return true;
 				}
                 heartbeat(players, count - 1);
@@ -105,7 +98,7 @@ public class bTimer extends Thread {
                 try {
 					sleep(15*1000);
 				} catch (InterruptedException e) {
-					e.printStackTrace();
+					if (com.beecub.glizer.glizer.D) e.printStackTrace();
 					return true;
 				}
                 heartbeat(players, count - 1);

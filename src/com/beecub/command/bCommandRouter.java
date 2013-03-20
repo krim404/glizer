@@ -128,10 +128,13 @@ public class bCommandRouter {
 			return true;
 		} else if (command.equalsIgnoreCase("mute")) {
 			Mute.mute(command, sender, args);
+			return true;
 		} else if (command.equalsIgnoreCase("tempmute")) {
 			Mute.tempmute(command, sender, args);
+			return true;
 		} else if (command.equalsIgnoreCase("unmute")) {
 			Mute.unmute(command, sender, args);
+			return true;
 		}
 		if (sender instanceof Player) {
 			Player player = (Player) sender;

@@ -30,7 +30,7 @@ public class MuteTime {
 				isActive = false;
 				Player muted = Bukkit.getPlayerExact(user);
 				if (muted != null) {
-					bChat.sendMessage(muted, Language.GetTranslated("mute.gotunmuted"));
+					bChat.sendMessage(muted, Language.GetTranslated("mute.gotunmuted", "server"));
 				}
 			}
 		}

@@ -108,7 +108,7 @@ public class glizerPlayerListener implements Listener {
 			if (mute.isTemporary()) {
 				bChat.sendMessage(event.getPlayer(), Language.GetTranslated("mute.muted_temporary")
 														.replace("$1", mute.getMuter())
-														.replace("$2", String.valueOf(mute.getTimeLeft()))
+														.replace("$2", String.valueOf((int) (mute.getTimeLeft() / 60)))
 														.replace("$3", mute.getReason()));
 			} else {
 				bChat.sendMessage(event.getPlayer(), Language.GetTranslated("mute.muted_permanent")
@@ -128,7 +128,7 @@ public class glizerPlayerListener implements Listener {
 				if (mute.isTemporary()) {
 					bChat.sendMessage(event.getPlayer(), Language.GetTranslated("mute.muted_temporary",
 															mute.getMuter(), 
-															String.valueOf(mute.getTimeLeft()),
+															String.valueOf((int) (mute.getTimeLeft() / 60)),
 															mute.getReason()));
 				} else {
 					bChat.sendMessage(event.getPlayer(), Language.GetTranslated("mute.muted_permanent",

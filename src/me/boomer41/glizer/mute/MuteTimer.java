@@ -1,15 +1,17 @@
 package me.boomer41.glizer.mute;
 
+import java.util.TimerTask;
+
 import org.bukkit.Bukkit;
 
 import com.beecub.glizer.glizer;
 
-public class MuteTimer implements Runnable {
+public class MuteTimer extends TimerTask {
 
 	private boolean alive = true;
 
 	@Override
-		public void run() {
+	public void run() {
 			if (alive) {
 				Bukkit.getScheduler().scheduleSyncDelayedTask(glizer.plugin, new Runnable() {
 					@Override
@@ -20,10 +22,6 @@ public class MuteTimer implements Runnable {
 				}
 			});
 		}
-	}
-	
-	public void interrupt() {
-		alive = false;
 	}
 
 }

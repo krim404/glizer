@@ -132,7 +132,7 @@ public class bConfigManager {
     	ipcheck_joinmessage = conf.getString("message.ipcheck.joinmessage", "You are connecting from a non allowed ip. Change your settings on glizer.de");
     	
     	if (!conf.contains("mute.commands")) conf.set("mute.commands", 
-    											new String[] { "msg", "r" }); 
+    											new String[] { "/msg", "/r", "/helpop", "/modreq", "/pe" }); 
     	mute_commands = conf.getStringList("mute.commands");
     	
         try {

@@ -206,7 +206,7 @@ commands:
   unmute:
     description: Unmute a player!
     usage: |
-           /<command> [playername
+           /<command> [playername]
 permissions:
   glizer.admin:
     children:
