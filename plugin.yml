@@ -1,8 +1,8 @@
 name: glizer
 main: com.beecub.glizer.glizer
-version: 2.3.3.0
+version: 2.3.4
 author: upsj
-website: 'http://glizer.de/'
+website: 'http://glizer.net/'
 description: >
              Minecraft Globalizer
 commands:
@@ -195,6 +195,18 @@ commands:
     description: Lists all possible accounts of this player
     usage: |
            /<command> [playername]
+  mute:
+    description: Mute a player!
+    usage: |
+           /<command> [playername] [reason]
+  tempmute:
+    description: Mute a player!
+    usage: |
+           /<command> [playername] [time in minutes] [reason]
+  unmute:
+    description: Unmute a player!
+    usage: |
+           /<command> [playername]
 permissions:
   glizer.admin:
     children:
@@ -222,6 +234,9 @@ permissions:
       glizer.warning.warnings: true
       glizer.reputation.message: true
       glizer.user: true
+      glizer.mute.mute: true
+      glizer.mute.tempmute: true
+      glizer.mute.unmute: true
   glizer.user:
     children:
       glizer.comment.comment: true
@@ -306,3 +321,9 @@ permissions:
     description: warnings
   glizer.reputation.message:
     description: reputationmessage
+  glizer.mute.mute:
+    description: permmute
+  glizer.mute.tempmute:
+    description: tempmute
+  glizer.mute.unmute:
+    description: unmute

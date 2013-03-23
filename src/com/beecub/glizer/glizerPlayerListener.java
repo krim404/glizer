@@ -3,16 +3,23 @@ package com.beecub.glizer;
 import java.util.HashMap;
 import java.util.Map;
 
+import me.boomer41.glizer.mute.Mute;
+import me.boomer41.glizer.mute.MuteTime;
+
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerLoginEvent.Result;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import com.beecub.util.Language;
 import com.beecub.util.bBackupManager;
 import com.beecub.util.bChat;
 import com.beecub.util.bConfigManager;
@@ -24,11 +31,6 @@ import de.upsj.glizer.APIRequest.LogoutRequest;
 
 public class glizerPlayerListener implements Listener {
 	Map<String, String> playerIPs = new HashMap<String, String>();
-	glizer glz;
-	public glizerPlayerListener(glizer glizer) 
-	{
-		this.glz = glizer;
-	}
 
 	@EventHandler
 	public void onPlayerPreLogin(AsyncPlayerPreLoginEvent event)
@@ -75,7 +77,7 @@ public class glizerPlayerListener implements Listener {
 			{
 				event.disallow(Result.KICK_BANNED, bConfigManager.ipcheck_joinmessage);
 				bChat.log(com.beecub.glizer.glizer.messagePluginName + " Bungee Cord error.", 2);
-				glz.getServer().getPluginManager().disablePlugin(glz);
+				Bukkit.getPluginManager().disablePlugin(glizer.plugin);
 			}
 		}
 		glizer.queue.add(new LoginRequest(event.getPlayer(), ip));
@@ -94,4 +96,44 @@ public class glizerPlayerListener implements Listener {
 	public void onPlayerQuit(PlayerQuitEvent event) {
 		glizer.queue.add(new LogoutRequest(event.getPlayer()));
 	}
+	
+	@EventHandler
+	public void onPlayerChat(AsyncPlayerChatEvent event) {
+		if (Mute.isMuted(event.getPlayer().getName())) {
+			MuteTime mute = Mute.getMute(event.getPlayer().getName());
+			if (mute.isTemporary()) {
+				bChat.sendMessage(event.getPlayer(), Language.GetTranslated("mute.muted_temporary")
+														.replace("$1", mute.getMuter())
+														.replace("$2", String.valueOf((int) (mute.getTimeLeft() / 60)))
+														.replace("$3", mute.getReason()));
+			} else {
+				bChat.sendMessage(event.getPlayer(), Language.GetTranslated("mute.muted_permanent")
+														.replace("$1", mute.getMuter())
+														.replace("$2", mute.getReason()));
+			}
+			event.setCancelled(true);
+		}
+	}
+	
+	@EventHandler
+	public void onPlayerCommand(PlayerCommandPreprocessEvent event) {
+		String[] command = event.getMessage().split(" ");
+		if (bConfigManager.mute_commands.contains(command[0])) {
+			if (Mute.isMuted(event.getPlayer().getName())) {
+				MuteTime mute = Mute.getMute(event.getPlayer().getName());
+				if (mute.isTemporary()) {
+					bChat.sendMessage(event.getPlayer(), Language.GetTranslated("mute.muted_temporary",
+															mute.getMuter(), 
+															String.valueOf((int) (mute.getTimeLeft() / 60)),
+															mute.getReason()));
+				} else {
+					bChat.sendMessage(event.getPlayer(), Language.GetTranslated("mute.muted_permanent",
+															mute.getMuter(),
+															mute.getReason()));
+				}
+				event.setCancelled(true);
+			}
+		}
+	}
+	
 }

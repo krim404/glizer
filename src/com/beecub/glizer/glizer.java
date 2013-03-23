@@ -7,8 +7,12 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Properties;
 import java.util.Queue;
+import java.util.Timer;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.logging.Logger;
+
+import me.boomer41.glizer.mute.Mute;
+import me.boomer41.glizer.mute.MuteTimer;
 
 import org.bukkit.Server;
 import org.bukkit.command.Command;
@@ -62,11 +66,12 @@ public class glizer extends JavaPlugin {
 	public static Queue<APIRequest> finished = new ConcurrentLinkedQueue<APIRequest>();
 	public static BanQueue banqueue;
 
+	@Override
 	public void onEnable() {
 
 		pdfFile = this.getDescription();
 		PluginManager pm = getServer().getPluginManager();
-		pm.registerEvents(new glizerPlayerListener(this), this);
+		pm.registerEvents(new glizerPlayerListener(), this);
 
 		bConfigManager bConfigManager = new bConfigManager(this);
 		bBackupManager bBackupManager = new bBackupManager(this);
@@ -106,6 +111,9 @@ public class glizer extends JavaPlugin {
 		this.getServer().getScheduler().scheduleSyncRepeatingTask(this, new FinishedQueueWorker(this), 1, 1);
 		this.getServer().getScheduler().scheduleSyncRepeatingTask(this, new TickCounter(this), 200, 200);
 		this.getServer().getScheduler().scheduleSyncRepeatingTask(this, new UpToDateTask(), 2000, 2000);
+		Mute.mutetimer = new MuteTimer();
+		Timer mutet = new Timer();
+		mutet.scheduleAtFixedRate(Mute.mutetimer, 1000, 1000);
 
 		Backup.getPlayers();
 		Whitelist.getPlayers();
@@ -114,21 +122,32 @@ public class glizer extends JavaPlugin {
 		bChat.log(pdfFile.getVersion() + " (Jackr)" + " is enabled!" );
 	}
 	
-	@SuppressWarnings("deprecation")
+	@Override
 	public void onDisable() {
-
-		if (heartbeatStartThread != null && heartbeatStartThread.isAlive())
-			heartbeatStartThread.stop();
-		if (heartbeatCheckThread != null && heartbeatCheckThread.isAlive())
-			heartbeatCheckThread.stop();
-		if (heartbeatThread != null && heartbeatThread.isAlive())
-			heartbeatThread.stop();
+		try {
+			if (heartbeatStartThread != null && heartbeatStartThread.isAlive())
+				heartbeatStartThread.interrupt();
+		} catch (Exception e) { if (glizer.D) e.printStackTrace(); }
+		try {
+			if (heartbeatCheckThread != null && heartbeatCheckThread.isAlive())
+				heartbeatCheckThread.interrupt();
+		} catch (Exception e) { if (glizer.D) e.printStackTrace(); }
+		try {
+			if (heartbeatThread != null && heartbeatThread.isAlive())
+				heartbeatThread.interrupt();
+		} catch (Exception e) { if (glizer.D) e.printStackTrace(); }
+		try {
+			Mute.mutetimer.cancel();
+			Mute.mutetimer = null;
+		} catch (Exception e) { if (glizer.D) e.printStackTrace(); }
 		heartbeatStartThread = null;
 		heartbeatThread = null;
 		heartbeatCheckThread = null;
 		
-		if (apiRequestThread != null && apiRequestThread.isAlive())
-			apiRequestThread.interrupt();
+		try {
+			if (apiRequestThread != null && apiRequestThread.isAlive())
+				apiRequestThread.interrupt();
+		} catch (Exception e) { if (glizer.D) e.printStackTrace(); }
 		if(serverLogout()) {
 		}
 		bChat.log(messagePluginName + " Alpha " + pdfFile.getVersion() + " (Jackr)" + " disabled!");
@@ -179,8 +198,6 @@ public class glizer extends JavaPlugin {
 		}
 		url_items.put("whitelistusers", users);
 
-
-
 		JSONObject result = bConnector.hdl_com(url_items);
 		String ok = null;
 		int version = 0;
@@ -189,7 +206,6 @@ public class glizer extends JavaPlugin {
 			ok = result.getString("response");
 			version = result.getInt("version");
 			protocol = result.getInt("protocol");
-
 		} catch (Exception e) {
 			if(glizer.D) e.printStackTrace();
 			bChat.log("Cant establish a connection to glizer-server!"/* glizer is now in offline mode"*/, 2);
@@ -303,8 +319,8 @@ public class glizer extends JavaPlugin {
 		} 
 	}
 
-	public static boolean heartbeat(glizer glizer) {
-		heartbeatThread = new bTimer (glizer);	
+	public static boolean heartbeat(final glizer glizer) {
+		heartbeatThread = new bTimer();	
 		heartbeatCheckThread = new HeartbeatChecker(glizer, heartbeatThread);
 
 		heartbeatStartThread = new Thread(){
@@ -319,10 +335,10 @@ public class glizer extends JavaPlugin {
 						sleep(1000);
 					} catch (InterruptedException e)
 					{
-						e.printStackTrace();
+						if (glizer.D) e.printStackTrace();
 					}
 					long end = System.nanoTime();
-					float x = (float)(end-start);
+					float x = end-start;
 					time += x/1000000.f;
 				}
 				heartbeatThread.start();
@@ -335,8 +351,6 @@ public class glizer extends JavaPlugin {
 	}
 }
 
-
-@SuppressWarnings("deprecation")
 class HeartbeatChecker extends Thread {
 	glizer pGlizer;
 	bTimer pHeartbeatThread;
@@ -345,6 +359,7 @@ class HeartbeatChecker extends Thread {
 		pGlizer = xpglizer;
 		this.pHeartbeatThread = pHeartbeatThread;
 	}
+	@Override
 	public void run(){
 		while (true)
 		{    				
@@ -353,15 +368,15 @@ class HeartbeatChecker extends Thread {
 				sleep(60000);
 			}
 			catch (InterruptedException e) {
-				e.printStackTrace();
+				if (glizer.D) e.printStackTrace();
 			}
 
 			if (pHeartbeatThread != null && !pHeartbeatThread.isAlive())
 			{	
 				bChat.log("Heartbeat cancelled, attempting to restart it.");
-				pHeartbeatThread.stop();
+				pHeartbeatThread.interrupt();
 				pHeartbeatThread = null;
-				pHeartbeatThread = new bTimer (pGlizer);
+				pHeartbeatThread = new bTimer();
 				pHeartbeatThread.start();
 			}
 		}
