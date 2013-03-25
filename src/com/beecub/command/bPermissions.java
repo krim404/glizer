@@ -26,10 +26,6 @@ public class bPermissions {
 
 	public static boolean scheckPermission(Player player, String command) {
 
-		/*String admin = "glizer.admin";
-		String moderator = "glizer.moderator";
-		String user = "glizer.user";*/
-
 		if (player.isOp()) {
 			return true;
 		}
@@ -181,8 +177,18 @@ public class bPermissions {
 			if (player.hasPermission("glizer.reputation.message")) {
 				return true;
 			}
-		} else {
-			return false;
+		} else if (command.equalsIgnoreCase("mute")) {
+			if (player.hasPermission("glizer.mute.mute")) {
+				return true;
+			}
+		} else if (command.equalsIgnoreCase("tempmute")) {
+			if (player.hasPermission("glizer.mute.tempmute")) {
+				return true;
+			}
+		} else if (command.equalsIgnoreCase("unmute")) {
+			if (player.hasPermission("glizer.mute.unmute")) {
+				return true;
+			}
 		}
 		return false;
 	}

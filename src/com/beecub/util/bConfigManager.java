@@ -46,6 +46,9 @@ public class bConfigManager {
 	// Language
 	public static String language;
 	private static File confFile;
+	
+	//Mute
+	public static List<String> mute_commands;
     
 	
     public bConfigManager(glizer glizer) {
@@ -127,6 +130,10 @@ public class bConfigManager {
     	
     	if(!conf.contains("message.ipcheck.joinmessage")) conf.set("message.ipcheck.joinmessage", "You are connecting from a non allowed ip. Change your settings on glizer.de");
     	ipcheck_joinmessage = conf.getString("message.ipcheck.joinmessage", "You are connecting from a non allowed ip. Change your settings on glizer.de");
+    	
+    	if (!conf.contains("mute.commands")) conf.set("mute.commands", 
+    											new String[] { "/msg", "/r", "/helpop", "/modreq", "/pe" }); 
+    	mute_commands = conf.getStringList("mute.commands");
     	
         try {
         	if (!confFile.exists())

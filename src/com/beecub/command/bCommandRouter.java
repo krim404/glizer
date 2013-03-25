@@ -1,5 +1,7 @@
 package com.beecub.command;
 
+import me.boomer41.glizer.mute.Mute;
+
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -29,103 +31,111 @@ public class bCommandRouter {
 		if (glizer.D)
 			bChat.log("Command: " + command);
 
-		if (command.equals("ban")) {
+		if (command.equalsIgnoreCase("ban")) {
 			if (bConfigManager.usebansystem) {
 				Ban.ban(command, sender, args);
 				return true;
 			}
 			return false;
-		} else if (command.equals("kick")) {
+		} else if (command.equalsIgnoreCase("kick")) {
 			Ban.kick(command, sender, args, false);
 			return true;
-		} else if (command.equals("skick")) {
+		} else if (command.equalsIgnoreCase("skick")) {
 			Ban.kick(command, sender, args, true);
 			return true;
-		} else if (command.equals("globalban") || command.equals("gban")) {
+		} else if (command.equalsIgnoreCase("globalban") || command.equalsIgnoreCase("gban")) {
 			if (bConfigManager.usebansystem && bConfigManager.useglobalbans) {
 				Ban.globalban(command, sender, args);
 				return true;
 			}
 			return false;
-		} else if (command.equals("localban") || command.equals("lban")) {
+		} else if (command.equalsIgnoreCase("localban") || command.equalsIgnoreCase("lban")) {
 			if (bConfigManager.usebansystem) {
 				Ban.localBan(command, sender, args);
 				return true;
 			}
 			return false;
-		} else if (command.equals("forceban")) {
+		} else if (command.equalsIgnoreCase("forceban")) {
 			if (bConfigManager.usebansystem) {
 				Ban.forceBan(command, sender, args);
 				return true;
 			}
 			return false;
-		} else if (command.equals("tempban") || command.equals("timeban")) {
+		} else if (command.equalsIgnoreCase("tempban") || command.equalsIgnoreCase("timeban")) {
 			if (bConfigManager.usebansystem) {
 				Ban.tempban(command, sender, args);
 				return true;
 			}
 			return false;
-		} else if (command.equals("unban")) {
+		} else if (command.equalsIgnoreCase("unban")) {
 			if (bConfigManager.usebansystem) {
 				Ban.unban(command, sender, args);
 				return true;
 			}
 			return false;
-		} else if (command.equals("tempwarn") || command.equals("timewarn")) {
+		} else if (command.equalsIgnoreCase("tempwarn") || command.equalsIgnoreCase("timewarn")) {
 			Warning.tempwarn(command, sender, args);
 			return true;
-		} else if (command.equals("warn")) {
+		} else if (command.equalsIgnoreCase("warn")) {
 			Warning.warn(command, sender, args);
 			return true;
-		} else if (command.equals("gwarn") || command.equals("globalwarn")) {
+		} else if (command.equalsIgnoreCase("gwarn") || command.equalsIgnoreCase("globalwarn")) {
 			Warning.gwarn(command, sender, args);
 			return true;
-		} else if (command.equals("praise")) {
+		} else if (command.equalsIgnoreCase("praise")) {
 			Note.praise(command, sender, args);
 			return true;
-		} else if (command.equals("gpraise") || command.equals("globalpraise")) {
+		} else if (command.equalsIgnoreCase("gpraise") || command.equalsIgnoreCase("globalpraise")) {
 			Note.gpraise(command, sender, args);
 			return true;
-		} else if (command.equals("glizer")) {
+		} else if (command.equalsIgnoreCase("glizer")) {
 			Other.glizer(command, sender, args);
 			return true;
-		} else if (command.equals("glizerreload")) {
+		} else if (command.equalsIgnoreCase("glizerreload")) {
 			Other.glizerreload(command, sender, args);
 			return true;
-		} else if (command.equals("glizerhelp")) {
+		} else if (command.equalsIgnoreCase("glizerhelp")) {
 			Other.glizerhelp(command, sender, args);
 			return true;
-		} else if (command.equals("addwhitelist")) {
+		} else if (command.equalsIgnoreCase("addwhitelist")) {
 			if (bConfigManager.usewhitelist) {
 				Whitelist.whitelistAdd(command, sender, args);
 				return true;
 			}
 			return false;
-		} else if (command.equals("removewhitelist")) {
+		} else if (command.equalsIgnoreCase("removewhitelist")) {
 			if (bConfigManager.usewhitelist) {
 				Whitelist.whitelistRemove(command, sender, args);
 				return true;
 			}
 			return false;
-		} else if (command.equals("abuse")) {
+		} else if (command.equalsIgnoreCase("abuse")) {
 			Other.abuse(command, sender, args);
 			return true;
-		} else if (command.equals("eventlist")) {
+		} else if (command.equalsIgnoreCase("eventlist")) {
 			if (bConfigManager.useevents) {
 				gEvent.ListEvents(sender, command, args);
 				return true;
 			}
 			return false;
-		} else if (command.equals("eventdetail")) {
+		} else if (command.equalsIgnoreCase("eventdetail")) {
 			if (bConfigManager.useevents) {
 				gEvent.EventDetails(sender, command, args);
 				return true;
 			}
-		} else if (command.equals("listaccounts")) {
+		} else if (command.equalsIgnoreCase("listaccounts")) {
 			Other.lookup(command, sender, args);
 			return true;
+		} else if (command.equalsIgnoreCase("mute")) {
+			Mute.mute(command, sender, args);
+			return true;
+		} else if (command.equalsIgnoreCase("tempmute")) {
+			Mute.tempmute(command, sender, args);
+			return true;
+		} else if (command.equalsIgnoreCase("unmute")) {
+			Mute.unmute(command, sender, args);
+			return true;
 		}
-
 		if (sender instanceof Player) {
 			Player player = (Player) sender;
 
@@ -138,78 +148,76 @@ public class bCommandRouter {
 			 * args); return true; } else if(command.equals("notes")) {
 			 * Note.notes(command, player, args); return true; }
 			 */
-			else if (command.equals("onlinetime")) {
+			else if (command.equalsIgnoreCase("onlinetime")) {
 				OnlineTime.showOnlineTime(command, player, args);
 				return true;
-			} else if (command.equals("warnings")) {
+			} else if (command.equalsIgnoreCase("warnings")) {
 				Warning.warnings(command, player, args, false);
 				return true;
-			} else if (command.equals("localwarnings"))	{
+			} else if (command.equalsIgnoreCase("localwarnings"))	{
 				Warning.warnings(command, player, args, true);
 				return true;
-			} else if (command.equals("comment")) {
+			} else if (command.equalsIgnoreCase("comment")) {
 				if (bConfigManager.usecomments) {
 					Comment.comment(command, player, args);
 					return true;
 				}
-			} else if (command.equals("comments")) {
+			} else if (command.equalsIgnoreCase("comments")) {
 				if (bConfigManager.usecomments) {
 					Comment.comments(command, player, args);
 					return true;
 				}
-			} else if (command.equals("rateserver")) {
+			} else if (command.equalsIgnoreCase("rateserver")) {
 				if (bConfigManager.useratings) {
 					Rating.rateserver(command, player, args);
 					return true;
 				}
-			} else if (command.equals("profile")) {
+			} else if (command.equalsIgnoreCase("profile")) {
 				if (bConfigManager.useprofiles) {
 					Profile.profile(command, player, args);
 					return true;
 				}
-			} else if (command.equals("editprofile")) {
+			} else if (command.equalsIgnoreCase("editprofile")) {
 				if (bConfigManager.useprofiles) {
 					Profile.editprofile(command, player, args);
 					return true;
 				}
-			} else if (command.equals("addfriend")) {
+			} else if (command.equalsIgnoreCase("addfriend")) {
 				if (bConfigManager.useprofiles) {
 					Friend.addfriend(command, player, args);
 					return true;
 				}
-			} else if (command.equals("removefriend")) {
+			} else if (command.equalsIgnoreCase("removefriend")) {
 				if (bConfigManager.useprofiles) {
 					Friend.removefriend(command, player, args);
 					return true;
 				}
-			} else if (command.equals("friends")) {
+			} else if (command.equalsIgnoreCase("friends")) {
 				if (bConfigManager.useprofiles) {
 					Friend.friends(command, player, args);
 					return true;
 				}
 			}
 
-			else if (command.equals("registerevent")) {
+			else if (command.equalsIgnoreCase("registerevent")) {
 				if (bConfigManager.useevents) {
 					gEvent.RegisterForEvent(player, command, args);
 					return true;
 				}
 				return false;
-			} else if (command.equals("unregisterevent")) {
+			} else if (command.equalsIgnoreCase("unregisterevent")) {
 				if (bConfigManager.useevents) {
 					gEvent.UnregisterFromEvent(player, command, args);
 					return true;
 				}
 				return false;
-			} else if (command.equals("myevents")) {
+			} else if (command.equalsIgnoreCase("myevents")) {
 				if (bConfigManager.useevents) {
 					gEvent.MyRegistered(player, command, args);
 					return true;
 				}
 				return false;
-			}
-
-			else if (command.equals("theanswertolifetheuniverseandeverything")) {
+			} else if (command.equalsIgnoreCase("theanswertolifetheuniverseandeverything")) {
 				Other.theanswertolifetheuniverseandeverything(command, player,
 						args);
 				return true;
