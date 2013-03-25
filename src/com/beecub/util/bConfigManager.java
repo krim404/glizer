@@ -30,6 +30,7 @@ public class bConfigManager {
     public static boolean useevents;
     public static boolean noip;
     public static boolean bungeeCord;
+    public static boolean noJoinMsg = false;
     
     // broadcasting
     public static boolean broadcastWarning;
@@ -119,6 +120,8 @@ public class bConfigManager {
     	broadcastBan = conf.getBoolean("announcing.broadcastBan", false);
     	broadcastKick = conf.getBoolean("announcing.broadcastKick", false);
     	messageReputation = conf.getBoolean("announcing.messageReputation",false);
+    	
+    	noJoinMsg = conf.getBoolean("message.join.disable",false);
     	
     	ban_kickmessage = conf.getString("message.ban.kickmessage", "You are banned from this server. Reason: %1");
     	tempban_kickmessage = conf.getString("message.tempban.kickmessage", "You are temporarily banned from this server. Reason: %1");

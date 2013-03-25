@@ -84,10 +84,14 @@ public class glizerPlayerListener implements Listener {
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		// TODO Language
-		bChat.sendMessageToPlayer(event.getPlayer(), "&6This server is running &2glizer - the Minecraft Globalizer&6");
-		bChat.sendMessageToPlayer(event.getPlayer(), "&6[GLIZER]: &eYour statistics are globally saved and public visible");
-		bChat.sendMessageToPlayer(event.getPlayer(), "&6[GLIZER]: &eFor more informations see www.glizer.de");
-
+		
+		if(bConfigManager.noJoinMsg == true)
+		{
+			bChat.sendMessageToPlayer(event.getPlayer(), "&6This server is running &2glizer - the Minecraft Globalizer&6");
+			bChat.sendMessageToPlayer(event.getPlayer(), "&6[GLIZER]: &eYour statistics are globally saved and public visible");
+			bChat.sendMessageToPlayer(event.getPlayer(), "&6[GLIZER]: &eFor more informations see www.glizer.net");
+		}
+		
 	}
 	
 	@EventHandler
