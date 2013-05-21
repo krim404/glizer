@@ -97,11 +97,11 @@ public class Mute {
 	public static boolean mutes(String command, CommandSender sender, String[] args) {
 		if(bPermissions.checkPermission(sender, command)) {
 			if (args.length == 0) {
-				bChat.sendMessage(sender, "§6Current Mutes:");
-				bChat.sendMessage(sender, "§6User | Temp? | Time left (min) | Muter");
+				bChat.sendMessage(sender, "&6Current Mutes:");
+				bChat.sendMessage(sender, "&6User | Temp? | Time left (min) | Muter");
 				for (MuteTime m : muted) {
 					if (m.isActive()) {
-						bChat.sendMessage(sender, "§6" + m.getUser() + " | " + (m.isTemporary() ? "Yes" : "No") + " | " + (m.isTemporary() ? String.valueOf((int) (m.getTimeLeft() / 60)) : "-") + " | " + m.getMuter());
+						bChat.sendMessage(sender, "&6" + m.getUser() + " | " + (m.isTemporary() ? "Yes" : "No") + " | " + (m.isTemporary() ? String.valueOf((int) (m.getTimeLeft() / 60)) : "-") + " | " + m.getMuter());
 					}
 				}
 			} else {
