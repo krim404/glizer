@@ -98,10 +98,10 @@ public class Mute {
 		if(bPermissions.checkPermission(sender, command)) {
 			if (args.length == 0) {
 				bChat.sendMessage(sender, "&6Current Mutes:");
-				bChat.sendMessage(sender, "&6User | Temp? | Time left (min) | Muter");
+				bChat.sendMessage(sender, "&6User | Temp? | Time left (min) | Muter | Reason");
 				for (MuteTime m : muted) {
 					if (m.isActive()) {
-						bChat.sendMessage(sender, "&6" + m.getUser() + " | " + (m.isTemporary() ? "Yes" : "No") + " | " + (m.isTemporary() ? String.valueOf((int) (m.getTimeLeft() / 60)) : "-") + " | " + m.getMuter());
+						bChat.sendMessage(sender, "&6" + m.getUser() + " | " + (m.isTemporary() ? "Yes" : "No") + " | " + (m.isTemporary() ? String.valueOf((int) (m.getTimeLeft() / 60)) : "-") + " | " + m.getMuter() + " | " + m.getReason());
 					}
 				}
 			} else {
