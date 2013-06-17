@@ -44,6 +44,7 @@ public class bConfigManager {
 	public static String ban_joinmessage;
 	public static String whitelist_joinmessage;
 	public static String ipcheck_joinmessage;
+	public static String warp_message;
 	
 	// Language
 	public static String language;
@@ -131,11 +132,11 @@ public class bConfigManager {
     	
     	ban_kickmessage = conf.getString("message.ban.kickmessage", "You are banned from this server. Reason: %1");
     	tempban_kickmessage = conf.getString("message.tempban.kickmessage", "You are temporarily banned from this server. Reason: %1");
-    	ban_joinmessage = conf.getString("message.ban.joinmessage", "You are banned from this server. Check glizer.de");
-    	whitelist_joinmessage = conf.getString("message.whitelist.joinmessage", "You aren't whitelisted on this server. Apply on glizer.de");
-    	
-    	if(!conf.contains("message.ipcheck.joinmessage")) conf.set("message.ipcheck.joinmessage", "You are connecting from a non allowed ip. Change your settings on glizer.de");
-    	ipcheck_joinmessage = conf.getString("message.ipcheck.joinmessage", "You are connecting from a non allowed ip. Change your settings on glizer.de");
+    	ban_joinmessage = conf.getString("message.ban.joinmessage", "You are banned from this server. Check glizer.net");
+    	whitelist_joinmessage = conf.getString("message.whitelist.joinmessage", "You aren't whitelisted on this server. Apply on glizer.net");
+    	warp_message = conf.getString("message.interwarp","The Player %1 is warping to the server %2");
+    	if(!conf.contains("message.ipcheck.joinmessage")) conf.set("message.ipcheck.joinmessage", "You are connecting from a non allowed ip. Change your settings on glizer.net");
+    	ipcheck_joinmessage = conf.getString("message.ipcheck.joinmessage", "You are connecting from a non allowed ip. Change your settings on glizer.net");
     	
     	if (!conf.contains("mute.commands")) conf.set("mute.commands", 
     											new String[] { "/msg", "/r", "/helpop", "/modreq", "/pe" }); 
@@ -181,7 +182,7 @@ public class bConfigManager {
             conf.set("message.ban.joinmessage", "You are banned from this server. Check glizer.de");
             conf.set("message.whitelist.joinmessage", "You aren't whitelisted on this server. Apply on glizer.de");
             conf.set("message.ipcheck.joinmessage", "You are connecting from a non allowed ip. Change your settings on glizer.de");
-            
+            conf.set("message.interwarp", "The Player %1 is warping to the server %2");
             conf.set("language", "en");
             
             // options

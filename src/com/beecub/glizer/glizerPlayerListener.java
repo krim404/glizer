@@ -105,7 +105,12 @@ public class glizerPlayerListener implements Listener {
 		    			if(sign.getLine(0) != null && sign.getLine(0).equalsIgnoreCase("[teleport]"))
 		    			{
 		    				this.KicktoOtherServer(player, sign.getLine(1)+sign.getLine(2)+sign.getLine(3));
+		    			} else if(sign.getLine(0) != null && sign.getLine(0).equalsIgnoreCase("[teleportnote]"))
+		    			{
+		    				this.KicktoOtherServer(player, sign.getLine(1)+sign.getLine(2)+sign.getLine(3));
+		    				bChat.broadcastMessage("&6" + bConfigManager.warp_message.replace("%1", player.getDisplayName()).replace("%2", sign.getLine(1)+sign.getLine(2)+sign.getLine(3)));
 		    			}
+		    				
 	    			}
 	    		}
 	    			
