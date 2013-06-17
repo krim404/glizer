@@ -31,6 +31,7 @@ public class bConfigManager {
     public static boolean noip;
     public static boolean bungeeCord;
     public static boolean noJoinMsg = false;
+    public static boolean useinterwarp = false;
     
     // broadcasting
     public static boolean broadcastWarning;
@@ -102,7 +103,8 @@ public class bConfigManager {
         if(!conf.contains("features.usecomments")) conf.set("features.usecomments", true);
         if(!conf.contains("features.useratings")) conf.set("features.useratings", true);
         if(!conf.contains("features.useevents")) conf.set("features.useevents", false);
-    	
+        if(!conf.contains("features.useinterwarp")) conf.set("features.useinterwarp", false);
+        
         noip = conf.getBoolean("features.noip", false);  
         bungeeCord = conf.getBoolean("features.bungeeCord", false);  
     	usewhitelist = conf.getBoolean("features.usewhitelist", false);    	
@@ -112,6 +114,7 @@ public class bConfigManager {
         usecomments = conf.getBoolean("features.usecomments", false);        
         useratings = conf.getBoolean("features.useratings", false);
         useevents = conf.getBoolean("features.useevents", false);
+        useinterwarp = conf.getBoolean("features.useinterwarp", false);
         
     	if(!conf.contains("announcing.broadcastWarning")) conf.set("announcing.broadcastWarning", false);
     	if(!conf.contains("announcing.broadcastBan")) conf.set("announcing.broadcastBan", true);
@@ -196,6 +199,7 @@ public class bConfigManager {
             conf.set("features.useevents", false);
             conf.set("features.noip",false);
             conf.set("features.bungeeCord",false);
+            conf.set("features.useinterwarp",false);
             
             // announces
             conf.set("announcing.broadcastWarning", false);

@@ -7,6 +7,9 @@ import me.boomer41.glizer.mute.Mute;
 import me.boomer41.glizer.mute.MuteTime;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -14,6 +17,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerLoginEvent.Result;
@@ -37,6 +41,76 @@ public class glizerPlayerListener implements Listener {
 	{
 		playerIPs.put(event.getName().toLowerCase(), bConnector.getIPAddress(event.getAddress()));
 	}
+	
+	
+	public Block getTypeAround(Block b, int id, int rad, boolean y)
+	{
+		Block tmp;
+		for(int i$ = (rad * -1); i$ < rad; i$++)
+        {
+    		for(int k$ = (rad * -1); k$ < rad; k$++)
+    		{
+    			if(y == true)
+    			{
+    				for(int j$ = (rad * -1); j$ < rad; j$++)
+    	            {
+    					tmp = b.getRelative(i$, j$, k$);
+    					if(tmp != null)
+    	    			{
+    	    				if(tmp.getTypeId() == id)
+    	    					return tmp;
+    	    			}
+    	            }
+    			} else
+    			{
+    				tmp = b.getRelative(i$, 0, k$);
+    				if(tmp != null)
+        			{
+        				if(tmp.getTypeId() == id)
+        					return tmp;
+        			}
+    			}
+    		}
+        }
+		return null;
+	}
+	
+	public void KicktoOtherServer(Player p, String ip)
+    {
+    	String n = "[Connect]to:"+ip;
+    	p.kickPlayer(n);
+    }
+	
+	@EventHandler
+	public void onPlayerInteractEventForServerSwitch(PlayerInteractEvent event)
+    {
+		if(bConfigManager.useinterwarp == true)
+		{
+			if(!(event.getPlayer() instanceof Player))
+				return;
+			
+	    	Player player = event.getPlayer();
+	    	
+	    	if(player.hasPermission("glizer.interwarp") && event.getClickedBlock() != null && event.getClickedBlock().getType() == Material.WOOD_BUTTON)
+	    	{
+	    		Block b = event.getClickedBlock();
+	    		Block a = this.getTypeAround(b, 4092, 2, true);
+	    		if(a != null && a.getData() == (byte)4) //Item Duplicator gefunden - muss noch gewechselt werden
+	    		{
+	    			Block s = this.getTypeAround(b, Material.SIGN_POST.getId(), 1, true);
+	    			if(s != null)
+	    			{
+		    			Sign sign = (Sign)s.getState();
+		    			if(sign.getLine(0) != null && sign.getLine(0).equalsIgnoreCase("[teleport]"))
+		    			{
+		    				this.KicktoOtherServer(player, sign.getLine(1)+sign.getLine(2)+sign.getLine(3));
+		    			}
+	    			}
+	    		}
+	    			
+	    	}
+		}
+    }
 	
 	@EventHandler(priority=EventPriority.HIGHEST)
 	public void onPlayerLogin(PlayerLoginEvent event) {

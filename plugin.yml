@@ -255,6 +255,7 @@ permissions:
       glizer.event: true
       glizer.help: true
       glizer.register: true
+      glizer.interwarp: true
   glizer.comment.comment:
     description: comment
   glizer.comment.comments:
