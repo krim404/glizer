@@ -92,7 +92,7 @@ public class glizerPlayerListener implements Listener {
 			
 	    	Player player = event.getPlayer();
 	    	
-	    	if(event.getAction() == Action.RIGHT_CLICK_BLOCK && player.hasPermission("glizer.interwarp") && event.getClickedBlock() != null && event.getClickedBlock().getType() == Material.WOOD_BUTTON)
+	    	if(event.getAction() == Action.RIGHT_CLICK_BLOCK && player.hasPermission("glizer.interwarp") && event.getClickedBlock() != null && (event.getClickedBlock().getType() == Material.WOOD_BUTTON || event.getClickedBlock().getType() == Material.STONE_BUTTON))
 	    	{
 	    		Block b = event.getClickedBlock();
 	    		Block a = this.getTypeAround(b, 4092, 2, true);
