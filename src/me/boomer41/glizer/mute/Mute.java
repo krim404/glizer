@@ -94,6 +94,25 @@ public class Mute {
 		return true;
 	}
 
+	public static boolean mutes(String command, CommandSender sender, String[] args) {
+		if(bPermissions.checkPermission(sender, command)) {
+			if (args.length == 0) {
+				bChat.sendMessage(sender, "&6Current Mutes:");
+				bChat.sendMessage(sender, "&6User | Temp? | Time left (min) | Muter | Reason");
+				for (MuteTime m : muted) {
+					if (m.isActive()) {
+						bChat.sendMessage(sender, "&6" + m.getUser() + " | " + (m.isTemporary() ? "Yes" : "No") + " | " + (m.isTemporary() ? String.valueOf((int) (m.getTimeLeft() / 60)) : "-") + " | " + m.getMuter() + " | " + m.getReason());
+					}
+				}
+			} else {
+				bChat.sendMessage(sender,
+						Language.GetTranslated("other.wrong_command_usage"));
+				bChat.sendMessage(sender, "&6/mutes");
+			}
+		}
+		return true;
+	}
+	
 	public static boolean isMuted(String name) {
 		return getMute(name) == null ? false : true;
 	}

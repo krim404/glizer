@@ -207,6 +207,10 @@ commands:
     description: Unmute a player!
     usage: |
            /<command> [playername]
+  mutes:
+    description: List all current mutes!
+    usage: |
+           /<command>
 permissions:
   glizer.admin:
     children:
@@ -328,3 +332,5 @@ permissions:
     description: tempmute
   glizer.mute.unmute:
     description: unmute
+  glizer.mute.mutes:
+    description: list mutes

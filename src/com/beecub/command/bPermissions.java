@@ -189,6 +189,10 @@ public class bPermissions {
 			if (player.hasPermission("glizer.mute.unmute")) {
 				return true;
 			}
+		} else if (command.equalsIgnoreCase("mutes")) {
+			if (player.hasPermission("glizer.mute.mutes")) {
+				return true;
+			}
 		}
 		return false;
 	}
