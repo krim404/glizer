@@ -45,10 +45,4 @@
   		<version>1.6.1-R0.1-SNAPSHOT</version>
   	</dependency>
   </dependencies>
-  <repositories>
-        <repository>
-            <id>bukkit-repo</id>
-            <url>http://repo.bukkit.org/content/groups/public</url>
-        </repository>
-    </repositories>
 </project>
