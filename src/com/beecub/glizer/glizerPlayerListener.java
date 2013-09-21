@@ -44,7 +44,8 @@ public class glizerPlayerListener implements Listener {
 	}
 	
 	
-	public Block getTypeAround(Block b, int id, int rad, boolean y)
+	@SuppressWarnings("deprecation")
+	public Block getTypeAround(Block b, int i, int rad, boolean y)
 	{
 		Block tmp;
 		for(int i$ = (rad * -1); i$ < rad; i$++)
@@ -58,7 +59,7 @@ public class glizerPlayerListener implements Listener {
     					tmp = b.getRelative(i$, j$, k$);
     					if(tmp != null)
     	    			{
-    	    				if(tmp.getTypeId() == id)
+    	    				if(tmp.getTypeId() == i)
     	    					return tmp;
     	    			}
     	            }
@@ -67,7 +68,7 @@ public class glizerPlayerListener implements Listener {
     				tmp = b.getRelative(i$, 0, k$);
     				if(tmp != null)
         			{
-        				if(tmp.getTypeId() == id)
+        				if(tmp.getTypeId() == i)
         					return tmp;
         			}
     			}
@@ -82,6 +83,7 @@ public class glizerPlayerListener implements Listener {
     	p.kickPlayer(n);
     }
 	
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onPlayerInteractEventForServerSwitch(PlayerInteractEvent event)
     {
