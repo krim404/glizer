@@ -127,7 +127,7 @@ public class glizerPlayerListener implements Listener {
 			Player player = event.getPlayer();
 			
 			if (bConfigManager.usewhitelist) {
-				if (bWhitelist.checkWhiteList(player.getName()))
+				if (bWhitelist.checkWhiteList(player))
 				{
 					if (glizer.D)
 						bChat.log("Player " + player.getName() + " is whitelisted");
@@ -140,7 +140,7 @@ public class glizerPlayerListener implements Listener {
 				}
 			}
 			
-			if (event.getResult() == Result.ALLOWED && bBackupManager.checkBanList(player.getName()))
+			if (event.getResult() == Result.ALLOWED && bBackupManager.checkBanList(player))
 			{
 				event.disallow(Result.KICK_BANNED, bConfigManager.ban_joinmessage);
 				if (glizer.D)

@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 
 import com.beecub.glizer.glizer;
 
@@ -44,9 +45,9 @@ public class bBackupManager {
         	bannedPlayers = new LinkedList<String>();
     }
     
-    public static boolean removeBanBackup(String name) {
-        if(banListContains(name)) {
-        	String lowercaseName = name.toLowerCase();
+    public static boolean removeBanBackup(Player p) {
+        if(banListContains(p)) {
+        	String lowercaseName = p.getUniqueId().toString();
         	String entry = null;
         	String[] parts;
         	for (String s : bannedPlayers)
@@ -105,9 +106,9 @@ public class bBackupManager {
 		}
 	}
 
-	public static boolean addBanBackup(String name) {
-        if(!banListContains(name)) {
-            bannedPlayers.add(name.toLowerCase());
+	public static boolean addBanBackup(Player p) {
+        if(!banListContains(p)) {
+            bannedPlayers.add(p.getUniqueId().toString().toLowerCase());
             backupban.set("ban", bannedPlayers);
             save();
             return true;
@@ -115,8 +116,8 @@ public class bBackupManager {
         return false;
     }
     
-    public static boolean checkBanList(String name) {
-        return banListContains(name);
+    public static boolean checkBanList(Player p) {
+        return banListContains(p);
     }
     
     public static boolean clearBanList() {
@@ -126,9 +127,9 @@ public class bBackupManager {
         return true;
     }
     
-    private static boolean banListContains(String player)
+    private static boolean banListContains(Player player)
     {
-    	String p = player.toLowerCase();
+    	String p = player.getUniqueId().toString();
     	String[] parts;
     	
     	long time = System.currentTimeMillis() / 1000;
